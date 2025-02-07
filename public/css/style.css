@@ -1,0 +1,47 @@
+div#pagination li {
+    border: gray solid 1px;
+    padding: 0 6px;
+}
+
+div#pagination li a {
+    color: rgb(0, 38, 255);
+    text-decoration: none;
+}
+
+div#pagination nav {
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
+}
+
+.frm-error {
+    color: red;
+    font-size: .8em;
+}
+
+.frm-label {
+    font-size: 1.2em;
+}
+
+.frm-field {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.frm-select {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.frm-button {
+    padding: 10px 15px;
+    margin: 10px 0 0 10px;
+    width: auto;
+}
