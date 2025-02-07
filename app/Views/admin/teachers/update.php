@@ -9,10 +9,10 @@
     if (isset($errors))
         setError($errors);
     
-    echo start_form('admin/teachers/update');
-    echo form_hidden('id', $teacher['id']);
-    echo input_field('name', 'Tanár neve', $teacher['name']);
-    echo select_field('user_id', 'Kapcsolódó felhasználó', $users, $teacher['user_id']);
+    echo start_form('admin/teachers/show');
+    echo form_hidden('id', $data['id']);
+    echo input_field('name', 'Tanár neve', $data['name']);
+    echo select_field('user_id', 'Kapcsolódó felhasználó', $users, $data['user_id']);
     echo start_button_group();
     echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button', 'onclick' => "window.location.href='" . site_url('admin/teachers/show') . "'"));
     echo button('submit', 'Mentés', 'submit', array('class' => 'btn btn-primary frm-button'));

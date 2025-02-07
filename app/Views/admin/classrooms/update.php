@@ -8,8 +8,8 @@
     helper('form');
     if (isset($errors))
         setError($errors);
-    
-    echo start_form('admin/classrooms/update');
+
+    echo start_form('admin/classrooms/show');
     echo form_hidden('id', $data['id']);
     echo input_field('name', 'Terem neve', $data['name']);
     echo start_button_group();
