@@ -64,10 +64,7 @@ class TeacherModel extends Model
     }
 
     public function getTeachersData() {
-        $ret = $this->builder()->select('teachers.*, users.username, (select count(*) from class where class.class_teacher_id=teachers.id) as classcount')
-                ->join('users', 'users.id=teachers.user_id', 'left')
-                ->orderBy('teachers.name')->get()->getResultArray();
-        return $ret;
+        return $this->getTeachersFull()->get()->getResultArray();
     }
 
 
