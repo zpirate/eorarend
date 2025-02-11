@@ -15,26 +15,28 @@
     <tbody>
         <a href="<?= site_url('admin/teachers/add') ?>" class="btn btn-secondary">Új tanár hozzáadása</a>
         <?php
-        foreach ($teachers as $teacher): ?>
+        foreach ($datas as $data): ?>
             <tr>
-                <td><?= $teacher['name'] ?></td>
-                <td><?= $teacher['username'] ?></td>
+                <td><?= $data['name'] ?></td>
+                <td><?= $data['username'] ?></td>
                 <td>
-                    <a href='<?= site_url("admin/teachers/update/{$teacher['id']}"); ?>' title='Módosítás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
+                    <a href='<?= site_url("admin/teachers/update/{$data['id']}"); ?>' title='Módosítás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
                         <i class='far fa-edit'></i></a>
-                    <?php if ($teacher['classcount'] == 0) : ?>
-                        <a href='<?= site_url("admin/teachers/delete/{$teacher['id']}"); ?>'
-                            title='Törlés' data-toggle='tooltip'
-                            class='btn btn-sm btn-danger me-2'
-                            onclick="return confirm('Biztosan törli a tanárt (<?= $teacher['name'] ?>)?');">
-                            <i class='far fa-trash-alt'></i>
-                        </a>
+                    <?php if ($data['classcount'] == 0) : ?>
+                        <form action='<?= site_url("admin/teachers/show"); ?>' method='post' style='display: inline;'>
+                            <input type='hidden' name='method' value='delete'>
+                            <input type='hidden' name='id' value='<?= $data['id'] ?>'>
+                            <button type='submit' title='Törlés' data-toggle='tooltip' class='btn btn-sm btn-danger me-2'
+                                onclick="return confirm('Biztosan törli a tanárt (<?= $data['name'] ?>)?');">
+                                <i class='far fa-trash-alt'></i>
+                            </button>
+                        </form>
                     <?php endif; ?>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
-<div id="pagination" class='d-none'>
+<div id="pagination">
     <?= $pager->links() ?>
 </div>
 <?= $this->endSection() ?>
