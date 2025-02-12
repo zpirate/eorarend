@@ -30,4 +30,14 @@ $routes->group('admin', static function ($routes) {
         });
 });
 
+$routes->group('admin', static function ($routes) {
+    $routes->group('years', static function ($routes) {
+        $routes->get('show', 'Admin\YearsController::show');
+        $routes->get('update/(:num)', 'Admin\YearsController::update/$1');
+        $routes->post('show', 'Admin\YearsController::show');
+        $routes->get('add', 'Admin\YearsController::add');
+        });
+});
+
+
 service('auth')->routes($routes);
