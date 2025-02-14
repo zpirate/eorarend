@@ -52,4 +52,13 @@ class YearModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function findAllWithEmpty() {
+        $ret = $this->builder()->select('id, name')->orderBy('name')->get()->getResultArray();
+        $result = array(''=>'');
+        foreach ($ret as $value) {
+            $result[$value['id']] = $value['name'];
+        }
+        return $result;
+    }
+
 }
