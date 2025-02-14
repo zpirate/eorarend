@@ -45,3 +45,26 @@ div#pagination nav {
     margin: 10px 0 0 10px;
     width: auto;
 }
+
+/* Timetable */
+.tt-head {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.tt-head-lesson {
+    width: 10%;
+}
+
+.tt-head-day {
+    width: 18%;
+}
+
+.tt-data-teacher {
+    font-size: .8em;
+}
+
+.tt-data-classrooom {
+    font-size: .8em;
+    text-align: right;
+}

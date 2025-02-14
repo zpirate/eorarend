@@ -1,0 +1,1 @@
+ALTER TABLE `classrooms` CHANGE `name` `name` VARCHAR(10) NOT NULL;

@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\TeacherModel;
-use App\Models\UsersModel;
+use App\Models\UserModel;
 
 class TeachersController extends BaseController
 {
@@ -17,7 +17,7 @@ class TeachersController extends BaseController
 
     public function show(): string
     {
-        $users = new UsersModel();
+        $users = new UserModel();
         $message = array('text' => '', 'type' => '');
 
         if (strtolower($this->request->getMethod()) == 'post') {
@@ -57,7 +57,7 @@ class TeachersController extends BaseController
 
     public function update($id): string
     {
-        $users = new UsersModel();
+        $users = new UserModel();
         if (strtolower($this->request->getMethod()) !== 'post') {
             return view('admin/teachers/update.php', array(
                 'data' => $this->model->find($id),
@@ -69,7 +69,7 @@ class TeachersController extends BaseController
     public function add(): string
     {
         if (strtolower($this->request->getMethod()) !== 'post') {
-            $users = new UsersModel();
+            $users = new UserModel();
 
             return view('admin/teachers/update.php', array(
                 'data' => array(
