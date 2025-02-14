@@ -17,4 +17,13 @@ class UserModel extends ShieldUserModel
             'full_name',
         ];
     }
+
+    public function findAllWithEmpty() {
+        $ret = $this->builder()->select('id, username')->orderBy('username')->get()->getResultArray();
+        $result = array(''=>'');
+        foreach ($ret as $value) {
+            $result[$value['id']] = $value['username'];
+        }
+        return $result;
+    }
 }

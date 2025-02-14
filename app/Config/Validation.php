@@ -55,14 +55,6 @@ public $login = [
             'regex_match[/\A[a-zA-Z0-9\.]+\z/]',
         ],
     ],
-    // 'email' => [
-    //     'label' => 'Auth.email',
-    //     'rules' => [
-    //         'required',
-    //         'max_length[254]',
-    //         'valid_email'
-    //     ],
-    // ],
     'password' => [
         'label' => 'Auth.password',
             'rules' => [
@@ -73,4 +65,51 @@ public $login = [
             'max_byte' => 'Auth.errorPasswordTooLongBytes',
         ]
     ],
-];}
+];
+
+
+public $registration = 
+[
+    'username' => [
+        'label' => 'Auth.username',
+        'rules' => [
+            'required',
+            'max_length[30]',
+            'min_length[3]',
+            'regex_match[/\A[a-zA-Z0-9\.]+\z/]',
+            'is_unique[users.username]',
+        ],
+    ],
+    'full_name' => [
+        'label' => 'Auth.fullname',
+        'rules' => [
+            'required',
+            'max_length[255]',
+        ],
+    ],    'email' => [
+        'label' => 'Auth.email',
+        'rules' => [
+            'required',
+            'max_length[254]',
+            'valid_email',
+            'is_unique[auth_identities.secret]',
+        ],
+    ],
+    'password' => [
+        'label' => 'Auth.password',
+        'rules' => [
+                'required',
+                'max_byte[72]',
+                'strong_password[]',
+            ],
+        'errors' => [
+            'max_byte' => 'Auth.errorPasswordTooLongBytes'
+        ]
+    ],
+    'password_confirm' => [
+        'label' => 'Auth.passwordConfirm',
+        'rules' => 'required|matches[password]',
+    ],
+];
+
+}

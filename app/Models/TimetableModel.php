@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TeacherModel extends Model
+class TimetableModel extends Model
 {
-    protected $table            = 'teachers';
+    protected $table            = 'timetables';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name','user_id'];
+    protected $allowedFields    = ['class_id', 'day', 'lesson_of_day', 'subject_id', 'teacher_id', 'classroom_id'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -30,18 +30,8 @@ class TeacherModel extends Model
     // Validation
     protected $validationRules      = [
         'id' => 'permit_empty|is_natural_no_zero',
-        'name' => "required|is_unique[teachers.name,id,{id}]",
-        'user_id' => 'is_unique[teachers.user_id,teachers.user_id,0]',
     ];
-    protected $validationMessages   = [
-        'name' => [
-            'required' => 'A tanár nevének megadása kötelező.',
-            'is_unique' => 'A tanár neve már szerepel az adatbázisban.'
-        ],
-        'user_id' => [
-            'is_unique' => 'A megadott felhasználó már egy másik tanárhoz van hozzárendelve.'
-        ]
-    ];
+    protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
@@ -56,16 +46,23 @@ class TeacherModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getTeachersFull() {
-        $this->builder()->select('teachers.*, users.username, (select count(*) from classes where classes.class_teacher_id=teachers.id) as classcount')
-                ->join('users', 'users.id=teachers.user_id', 'left')
-                ->orderBy('teachers.name');
-        return $this;
+    public function getTimetableForClass($class_id)
+    {
+        return $this->builder()->select('timetables.*, 
+                                classes.name as class_name, 
+                                subjects.name as subject_name, 
+                                teachers.name as teacher_name, 
+                                classrooms.name as classroom_name')
+            ->join('classes', 'classes.id=timetables.class_id', 'left')
+            ->join('subjects', 'subjects.id=timetables.subject_id', 'left')
+            ->join('teachers', 'teachers.id=timetables.teacher_id', 'left')
+            ->join('classrooms', 'classrooms.id=timetables.classroom_id', 'left')
+            ->where('timetables.class_id', $class_id)->get()->getResultArray();
+        //return $this;
     }
 
-    public function getTeachersData() {
+    public function getTeachersData()
+    {
         return $this->getTeachersFull()->get()->getResultArray();
     }
-
-
 }

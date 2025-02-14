@@ -5,27 +5,26 @@ namespace App\Database;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\DatabaseTestTrait;
 
-class TeacherModelTest extends CIUnitTestCase
+class ClassroomModelTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;
 
     var $model;
-    var $newData = "Teszt Teacher";
+    var $newData = "x999";
 
     function setUp(): void
     {
         parent::setUp();
-        $this->model = new \App\Models\TeacherModel();
+        $this->model = new \App\Models\ClassroomModel();
         $rs = $this->model->like('name', "{$this->newData}%")->find();
         foreach ($rs as $row) {
             $this->model->delete($row['id']);
         }
     }
 
-    function testInsertUpdateGetDelete() {
+    function testInsertUpdateDelete() {
         $data = [
-            'name' => $this->newData,
-            'user_id' => 0
+            'name' => $this->newData
         ];
 
         // Insert new record
@@ -36,26 +35,6 @@ class TeacherModelTest extends CIUnitTestCase
         $this->newData .= '2';
         $this->model->update($newId, ['name' => $this->newData]);
         $this->seeNumRecords(1, $this->model->builder->getTable(), array('name' => $this->newData));
-
-        // Check getTeachersData
-        $data = $this->model->getTeachersData();
-        $getId = 0;
-        foreach ($data as $row) {
-            if ($row['name'] == $this->newData) {
-                $getId = $row['id'];
-            }
-        }
-        $this->assertEquals($newId, $getId);
-
-        // Check getTeachersData
-        $m = $this->model->getTeachersFull();
-        $getId = 0;
-        foreach ($m->get()->getResultArray() as $row) {
-            if ($row['name'] == $this->newData) {
-                $getId = $row['id'];
-            }
-        }
-        $this->assertEquals($newId, $getId);
 
         // Delete record
         $this->model->delete($newId);
