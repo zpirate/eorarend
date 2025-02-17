@@ -12,8 +12,8 @@
     echo start_form('admin/classes/show');
     echo form_hidden('id', $data['id']);
     echo input_field('name', 'Osztály neve', $data['name']);
-    echo select_field('year_id', 'Évfolyam', $years, $data['year_id']);
-    echo select_field('class_teacher_id', 'Osztályfőnők', $teachers, $data['class_teacher_id']);
+    echo select_field('year_id', 'Évfolyam', $years, $data['year_id'], array('add_empty' => true));
+    echo select_field('class_teacher_id', 'Osztályfőnők', $teachers, $data['class_teacher_id'], array('add_empty' => true));
     echo start_button_group();
     echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button', 'onclick' => "window.location.href='" . site_url('admin/classes/show') . "'"));
     echo button('submit', 'Mentés', 'submit', array('class' => 'btn btn-primary frm-button'));

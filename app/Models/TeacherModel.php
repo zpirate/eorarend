@@ -12,7 +12,7 @@ class TeacherModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name','user_id'];
+    protected $allowedFields    = ['name', 'user_id'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -56,24 +56,34 @@ class TeacherModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getTeachersFull() {
+    public function getTeachersFull()
+    {
         $this->builder()->select('teachers.*, users.username, (select count(*) from classes where classes.class_teacher_id=teachers.id) as classcount')
-                ->join('users', 'users.id=teachers.user_id', 'left')
-                ->orderBy('teachers.name');
+            ->join('users', 'users.id=teachers.user_id', 'left')
+            ->orderBy('teachers.name');
         return $this;
     }
 
-    public function getTeachersData() {
+    public function getTeachersData()
+    {
         return $this->getTeachersFull()->get()->getResultArray();
     }
 
-    public function findAllWithEmpty() {
-        $ret = $this->builder()->select('id, name')->orderBy('name')->get()->getResultArray();
-        $result = array(''=>'');
-        foreach ($ret as $value) {
-            $result[$value['id']] = $value['name'];
-        }
-        return $result;
+    public function getTeachersFullSubject()
+    {
+        $this->builder()->select('teachers.id, teachers.name, teachers.user_id, users.username, 
+                                group_concat(subjects.name order by subjects.name separator ", ") as subjects, 
+                                (select count(*) from classes where classes.class_teacher_id=teachers.id) as classcount')
+            ->join('users', 'users.id=teachers.user_id', 'left')
+            ->join('teachers_subjects', 'teachers_subjects.teacher_id=teachers.id', 'left')
+            ->join('subjects', 'subjects.id=teachers_subjects.subject_id', 'left')
+            ->groupBy('teachers.id, teachers.name, teachers.user_id, users.username, classcount')
+            ->orderBy('teachers.name');
+        return $this;
     }
 
+    function getCodetable()
+    {
+        return $this->builder()->select("id as key, name as value")->orderBy('name')->get()->getResultArray();
+    }
 }

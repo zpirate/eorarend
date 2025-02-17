@@ -41,8 +41,8 @@ class ClassesController extends BaseController
                     return view('admin/classes/update.php', array(
                         'message' => $this->addMessage('danger', 'Hiba történt a mentés során.'),
                         'data' => $this->request->getPost(),
-                        'years' => $years->findAllWithEmpty(),
-                        'teachers' => $teachers->findAllWithEmpty(),
+                        'years' => $years->getCodeTable(),
+                        'teachers' => $teachers->getCodeTable(),
                         'errors' => $this->model->errors(),
                     ));
                 } else {
@@ -65,8 +65,8 @@ class ClassesController extends BaseController
         if (strtolower($this->request->getMethod()) !== 'post') {
             return view('admin/classes/update.php', array(
                 'data' => $this->model->find($id),
-                'years' => $years->findAllWithEmpty(),
-                'teachers' => $teachers->findAllWithEmpty(),
+                'years' => $years->getCodeTable(),
+                'teachers' => $teachers->getCodeTable(),
             ));
         }
     }
@@ -84,8 +84,8 @@ class ClassesController extends BaseController
                     'year_id' => '',
                     'class_teacher_id' => ''
                 ),
-                'years' => $years->findAllWithEmpty(),
-                'teachers' => $teachers->findAllWithEmpty(),
+                'years' => $years->getCodeTable(),
+                'teachers' => $teachers->getCodeTable(),
             ));
         }
     }

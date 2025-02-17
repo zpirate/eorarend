@@ -68,4 +68,8 @@ class ClassModel extends Model
         return $this;
     }
 
+    function getCodetable() {
+        return $this->builder()->select("id as key, name as value")->orderBy('name')->get()->getResultArray();
+    }
+
 }

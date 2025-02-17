@@ -1,1 +1,2 @@
-ALTER TABLE `classrooms` CHANGE `name` `name` VARCHAR(10) NOT NULL;
+DROP TABLE `eorarend`.`users_orig`;
+

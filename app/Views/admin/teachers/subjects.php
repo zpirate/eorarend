@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 
-<h1 class="text-center">Tanárok karbantartása</h1>
+<h1 class="text-center"><?= $teacher['name'] ?> tantárgyai</h1>
 <div class="m-4">
     <?php
     helper('form');
@@ -10,9 +10,19 @@
         setError($errors);
     
     echo start_form('admin/teachers/show');
-    echo form_hidden('id', $data['id']);
-    echo input_field('name', 'Tanár neve', $data['name']);
-    echo select_field('user_id', 'Kapcsolódó felhasználó', $users, $data['user_id'], array('add_empty' => true));
+    echo form_hidden('save', 'subjects');
+    echo form_hidden('teacher_id', $teacher['id']);
+    
+    // subjects
+    $allSubjects = array();
+    foreach ($subjects as $subject) {
+        $sub = array('id' => $subject['key'], 'title' => $subject['value']);
+        if (in_array($subject['key'], $data))
+            $sub['checked'] = true;
+        array_push($allSubjects, $sub);
+    }
+    echo checkbox_fields($allSubjects);
+
     echo start_button_group();
     echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button', 'onclick' => "window.location.href='" . site_url('admin/teachers/show') . "'"));
     echo button('submit', 'Mentés', 'submit', array('class' => 'btn btn-primary frm-button'));
