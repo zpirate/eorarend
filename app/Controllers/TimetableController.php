@@ -18,6 +18,8 @@ class TimetableController extends BaseController
         for ($i = 0; $i < 5; $i++) {
             $data['timetable'][$i] = $this->getDataByDay($timetable, $i + 1);
         }
+
+        $data['classes'] = array(array('key' => 1, 'value' => '9.A'));
         return view('timetable', $data);
     }
 

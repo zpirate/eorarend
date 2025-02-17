@@ -56,7 +56,7 @@ return [
     'needAccount'        => 'Hozzáférésre van szüksége?',
     'rememberMe'         => 'Emlékezz rám',
     'forgotPassword'     => 'Elfelejtette a jelszavát?',
-    'useMagicLink'       => 'Használja a bejelentkezési linket',
+    'useMagicLink'       => 'Helyreállítási link küldése',
     'magicLinkSubject'   => 'A bejelentkezési linkje.',
     'magicTokenNotFound' => 'Nem sikerült ellenőrizni a linket.',
     'magicLinkExpired'   => 'Sajnáljuk, a link lejárt.',

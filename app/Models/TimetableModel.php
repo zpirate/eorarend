@@ -61,8 +61,8 @@ class TimetableModel extends Model
         //return $this;
     }
 
-    public function getTeachersData()
-    {
-        return $this->getTeachersFull()->get()->getResultArray();
-    }
+    // public function getTeachersData()
+    // {
+    //     return $this->getTeachersFull()->get()->getResultArray();
+    // }
 }

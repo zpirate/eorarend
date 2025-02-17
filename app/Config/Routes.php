@@ -18,6 +18,7 @@ $routes->group('admin', static function ($routes) {
         $routes->get('update/(:num)', 'Admin\TeachersController::update/$1');
         $routes->post('show', 'Admin\TeachersController::show');
         $routes->get('add', 'Admin\TeachersController::add');
+        $routes->get('subjects/(:num)', 'Admin\TeachersController::subjects/$1');
         });
 });
 

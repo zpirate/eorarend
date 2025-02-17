@@ -18,12 +18,16 @@ class UserModel extends ShieldUserModel
         ];
     }
 
-    public function findAllWithEmpty() {
-        $ret = $this->builder()->select('id, username')->orderBy('username')->get()->getResultArray();
-        $result = array(''=>'');
-        foreach ($ret as $value) {
-            $result[$value['id']] = $value['username'];
-        }
-        return $result;
+    function getCodetable() {
+        return $this->builder()->select("id as key, username as value")->orderBy('username')->get()->getResultArray();
     }
+
+    // public function findAllWithEmpty() {
+    //     $ret = $this->builder()->select('id, username')->orderBy('username')->get()->getResultArray();
+    //     $result = array(''=>'');
+    //     foreach ($ret as $value) {
+    //         $result[$value['id']] = $value['username'];
+    //     }
+    //     return $result;
+    // }
 }

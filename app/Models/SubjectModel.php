@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ClassroomModel extends Model
+class SubjectModel extends Model
 {
-    protected $table            = 'classrooms';
+    protected $table            = 'subjects';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -30,12 +30,12 @@ class ClassroomModel extends Model
     // Validation
     protected $validationRules      = [
         'id' => 'permit_empty|is_natural_no_zero',
-        'name' => "required|is_unique[classrooms.name,id,{id}]"
+        'name' => "required|is_unique[subjects.name,id,{id}]"
     ];
     protected $validationMessages   = [
         'name' => [
-            'required' => 'Az osztályterem nevének megadása kötelező.',
-            'is_unique' => 'A osztályterem neve már szerepel az adatbázisban.'
+            'required' => 'A tantárgu nevének megadása kötelező.',
+            'is_unique' => 'A tantárgy neve már szerepel az adatbázisban.'
         ]
     ];
     protected $skipValidation       = false;
@@ -52,8 +52,8 @@ class ClassroomModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    function getCodetable() {
-        return $this->builder()->select("id as key, name as value")->orderBy('name')->get()->getResultArray();
+    public function getCodeTable() {
+        return $this->builder()->select('id as key, name as value')->orderBy('name')->get()->getResultArray();
     }
 
 }
