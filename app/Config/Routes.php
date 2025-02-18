@@ -49,5 +49,23 @@ $routes->group('admin', static function ($routes) {
         });
 });
 
+$routes->group('admin', static function ($routes) {
+    $routes->group('subjects', static function ($routes) {
+        $routes->get('show', 'Admin\SubjectsController::show');
+        $routes->get('update/(:num)', 'Admin\SubjectsController::update/$1');
+        $routes->post('show', 'Admin\SubjectsController::show');
+        $routes->get('add', 'Admin\SubjectsController::add');
+        });
+});
+
+$routes->group('admin', static function ($routes) {
+    $routes->group('students', static function ($routes) {
+        $routes->get('show', 'Admin\StudentsController::show');
+        $routes->get('update/(:num)', 'Admin\StudentsController::update/$1');
+        $routes->post('show', 'Admin\StudentsController::show');
+        $routes->get('add', 'Admin\StudentsController::add');
+        });
+});
+
 
 service('auth')->routes($routes);
