@@ -1,7 +1,5 @@
 <?php
 
-$openDiv;
-$openDivLabel;
 $validationErrors;
 
 use Config\Validation;
@@ -14,15 +12,21 @@ function setError($error)
     $validationErrors = $error;
 }
 
+function getOpenDiv(): String
+{
+    return "<div class='col-12'>";
+}
+
+function getOpenDivLabel(): String
+{
+    return "<div class='col-12 mt-2'>";
+}
+
 /**
  * Itt kell inicializalni a globalis valtozokat
  */
 function start_form($action)
 {
-    global $openDiv, $openDivLabel;
-    $openDiv = "<div class='col-12'>";
-    $openDivLabel = "<div class='col-12 mt-2'>";
-
     $html = form_open($action);
     $html .= "<div class='container'><div class='row'>";
     return $html;
@@ -37,28 +41,29 @@ function end_form()
 
 function input_field($name, $label, $value)
 {
-    global $openDiv, $openDivLabel;
-    $html = $openDivLabel . form_label($label, $name, array('class' => 'frm-label')) . "</div>";
-    $html .= $openDiv . form_input($name, $value, array('class' => 'frm-field')) . "</div>";
+    $html = getOpenDivLabel() . form_label($label, $name, array('class' => 'frm-label')) . "</div>";
+    $html .= getOpenDiv() . form_input($name, $value, array('class' => 'frm-field')) . "</div>";
     $html .= show_error($name);
     return $html;
 }
 
 function select_field($name, $label, $options, $selected, $args = [])
 {
+    $code = [];
+    $extra = array('class' => 'frm-select');
     if (is_array($args)) {
         if (array_key_exists('add_empty', $args) && $args['add_empty']) {
             $code = array('' => '');
-        } else {
-            $code = [];
+        }
+        if (array_key_exists('onclick', $args)) {
+            $extra['onclick'] = $args['onclick'];
         }
     }
     foreach ($options as $option) {
         $code[$option['key']] = $option['value'];
     }
-    global $openDiv, $openDivLabel;
-    $html = $openDivLabel . form_label($label, $name, array('class' => 'frm-label')) . "</div>";
-    $html .= $openDiv . form_dropdown($name, $code, $selected, array('class' => 'frm-select')) . "</div>";
+    $html = getOpenDivLabel() . form_label($label, $name, array('class' => 'frm-label')) . "</div>";
+    $html .= getOpenDiv() . form_dropdown($name, $code, $selected, $extra) . "</div>";
     $html .= show_error($name);
     return $html;
 }
@@ -75,17 +80,15 @@ function multiselect_field($name, $label, $options, $selected = [], $args = [])
     foreach ($options as $option) {
         $code[$option['key']] = $option['value'];
     }
-    global $openDiv, $openDivLabel;
-    $html = $openDivLabel . form_label($label, $name, array('class' => 'frm-label')) . "</div>";
-    $html .= $openDiv . form_multiselect($name, $code, $selected, array('class' => 'frm-select')) . "</div>";
+    $html = getOpenDivLabel() . form_label($label, $name, array('class' => 'frm-label')) . "</div>";
+    $html .= getOpenDiv() . form_multiselect($name, $code, $selected, array('class' => 'frm-select')) . "</div>";
     $html .= show_error($name);
     return $html;
 }
 
 function checkbox_field($name, $label, $checked = false)
 {
-    global $openDiv;
-    $html = $openDiv . form_checkbox($name, '1', $checked, array('class' => 'frm-checkbox'));
+    $html = getOpenDiv() . form_checkbox($name, '1', $checked, array('class' => 'frm-checkbox'));
     $html .= form_label($label, $name, array('class' => 'frm-label')) . "</div>";
     $html .= show_error($name);
     return $html;
@@ -128,7 +131,7 @@ function button($name, $label, $type, $attributes)
 
 function show_error(string $field): string
 {
-    global $validationErrors, $openDiv;
+    global $validationErrors;
     $html = '';
     $errors = [];
     if ($validationErrors != null)
@@ -142,8 +145,21 @@ function show_error(string $field): string
     }
 
     foreach ($errors as $error) {
-        $html .=  $openDiv . "<div class='frm-error'>{$error}</div></div>";
+        $html .=  getOpenDiv() . "<div class='frm-error'>{$error}</div></div>";
     }
 
     return $html;
+}
+
+function timetableHeader() {
+    return "<thead>
+            <tr>
+                <th class=\"tt-head tt-head-lesson\">Óra</th>
+                <th class=\"tt-head tt-head-day\">Hétfő</th>
+                <th class=\"tt-head tt-head-day\">Kedd</th>
+                <th class=\"tt-head tt-head-day\">Szerda</th>
+                <th class=\"tt-head tt-head-day\">Csütörtök</th>
+                <th class=\"tt-head tt-head-day\">Péntek</th>
+            </tr>
+        </thead>";
 }

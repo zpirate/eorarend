@@ -7,3 +7,14 @@ function setMenuActive(fName) {
         }
     })
 }
+
+function changeColor(e) {
+    color = $(e).hasClass("available");
+    if (color) {
+        $(e).removeClass("available");
+        $(e).addClass("unavailable");
+    } else {
+        $(e).removeClass("unavailable");
+        $(e).addClass("available");
+    }
+}

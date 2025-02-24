@@ -7,7 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'HomeController::index');
 $routes->get('/home', 'HomeController::index');
-$routes->get('/timetable', 'TimetableController::index');
+$routes->get('/timetable', 'TimetableController::index/0');
+$routes->get('/timetable/(:num)', 'TimetableController::index/$1');
 $routes->get('/teachers', 'TeachersController::index');
 
 //$routes->get('/admin/teachers/edit/(:num)', 'Admin\TeachersController::edit/$1');
@@ -19,6 +20,7 @@ $routes->group('admin', static function ($routes) {
         $routes->post('show', 'Admin\TeachersController::show');
         $routes->get('add', 'Admin\TeachersController::add');
         $routes->get('subjects/(:num)', 'Admin\TeachersController::subjects/$1');
+        $routes->get('availability/(:num)', 'Admin\TeachersController::availability/$1');
         });
 });
 

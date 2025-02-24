@@ -49,7 +49,8 @@
             <div class="col-2">
                 <div>
                     <?php
-                    echo auth()->user()->full_name;
+                    $cName = auth()->getProvider()->getClassName();
+                    echo auth()->user()->full_name . (strlen($cName) > 0 ? " ({$cName})" : "");
                     ?>
                     <a href="<?= url_to("logout"); ?>">Kilépés</a>
                 </div>

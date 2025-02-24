@@ -15,6 +15,7 @@ class UserModel extends ShieldUserModel
         $this->allowedFields = [
             ...$this->allowedFields,
             'full_name',
+            'educational_id'
         ];
     }
 
@@ -22,12 +23,38 @@ class UserModel extends ShieldUserModel
         return $this->builder()->select("id as key, username as value")->orderBy('username')->get()->getResultArray();
     }
 
-    // public function findAllWithEmpty() {
-    //     $ret = $this->builder()->select('id, username')->orderBy('username')->get()->getResultArray();
-    //     $result = array(''=>'');
-    //     foreach ($ret as $value) {
-    //         $result[$value['id']] = $value['username'];
-    //     }
-    //     return $result;
-    // }
+    function isAdmin() {
+        return in_array('admin', auth()->user()->getGroups());
+    }
+
+    function isStudent() {
+        return in_array('student', auth()->user()->getGroups());
+    }
+
+    function isTeacher() {
+        return in_array('teacher', auth()->user()->getGroups());
+    }
+
+    function getClassId() {
+        $cid = 0;
+        if ($this->isStudent()) {
+            $sModel = new \App\Models\StudentModel();
+            $row = $sModel->builder()->where('educational_id', auth()->user()->educational_id)->get()->getResultArray();
+            if (count($row) > 0) {
+                $cid = $row[0]['class_id'];
+            }
+        }
+        return $cid;
+    }
+
+    function getClassName() {
+        $cName = "";
+        $cid = $this->getClassId();
+        if ($cid != 0) {
+            $cModel = new \App\Models\ClassModel();
+            $row = $cModel->find($cid);
+            $cName = $row['name'];
+        }
+        return $cName;
+    }
 }

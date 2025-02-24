@@ -29,6 +29,7 @@ return [
     'unableSendEmailToUser' => 'Sorry, there was a problem sending the email. We could not send an email to "{0}".',
     'throttled'             => 'Too many requests made from this IP address. You may try again in {0} seconds.',
     'notEnoughPrivilege'    => 'You do not have the necessary permission to perform the desired operation.',
+    'errorInvalidEducationalId' => 'Az oktatási azonosító érvénytelen. Az oktatási azonosító 11 számjegyből állhat, és a 7 számjeggyel kezdődik.',
     // JWT Exceptions
     'invalidJWT'     => 'The token is invalid.',
     'expiredJWT'     => 'The token has expired.',
@@ -37,6 +38,7 @@ return [
     'email'           => 'Email cím',
     'username'        => 'Felhasználónév',
     'fullname'        => 'Teljes név',
+    'educationalId'   => 'Oktatási azonosító',
     'password'        => 'Jelszó',
     'passwordConfirm' => 'Jelszó (ismét)',
     'haveAccount'     => 'Van már hozzáférése?',

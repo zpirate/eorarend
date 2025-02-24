@@ -26,6 +26,8 @@
                         <i class='far fa-edit'></i></a>
                     <a href='<?= site_url("admin/teachers/subjects/{$data['id']}"); ?>' title='Tantárgyak' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
                         <i class='fas fa-book'></i></a>
+                        <a href='<?= site_url("admin/teachers/availability/{$data['id']}"); ?>' title='Rendelkezésre állás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
+                        <i class='fas fa-book'></i></a>
                     <?php if ($data['classcount'] == 0) : ?>
                         <form action='<?= site_url("admin/teachers/show"); ?>' method='post' style='display: inline;'>
                             <input type='hidden' name='method' value='delete'>

@@ -40,9 +40,15 @@
                     </div>
 
                     <!-- Full name -->
-                    <div class="form-floating mb-4">
+                    <div class="form-floating mb-2">
                         <input type="text" class="form-control" id="floatingFullnameInput" name="full_name" inputmode="text" autocomplete="full_name" placeholder="<?= lang('Auth.fullname') ?>" value="<?= old('full_name') ?>">
                         <label for="floatingFullnameInput"><?= lang('Auth.fullname') ?></label>
+                    </div>
+
+                    <!-- Educational ID -->
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="floatingEducationalIdInput" name="educational_id" inputmode="text" autocomplete="educational_id" placeholder="<?= lang('Auth.educationalId') ?>" value="<?= old('educational_id') ?>">
+                        <label for="floatingEducationalIdInput"><?= lang('Auth.educationalId') ?></label>
                     </div>
 
                     <!-- Password -->

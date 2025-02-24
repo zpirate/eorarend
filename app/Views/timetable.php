@@ -4,25 +4,17 @@
 <h1 class='text-center mt-4'>Órarend</h1>
 <?php
 helper('form');
-$hide = "d-none";
+$hide = "class='d-none'";
 if (auth()->user()->inGroup('admin'))
     $hide = "";
-echo "<div class='{$hide}'>";
-echo select_field('class_id', 'Osztály', $classes, 1);
-echo "</div'>";
+echo "<div {$hide}>";
+echo select_field('class_id', 'Osztály', $classes, $active, 
+    array('onclick' => "window.location='" . url_to('timetable') . "/' + $(\"select[name='class_id']\").find(\":selected\").val()"));
+echo "</div>";
 ?>
 <div class="mx-5 my-2">
     <table class="table table-striped table-bordered border-primary">
-        <thead>
-            <tr>
-                <th class="tt-head tt-head-lesson">Óra</th>
-                <th class="tt-head tt-head-day">Hétfő</th>
-                <th class="tt-head tt-head-day">Kedd</th>
-                <th class="tt-head tt-head-day">Szerda</th>
-                <th class="tt-head tt-head-day">Csütörtök</th>
-                <th class="tt-head tt-head-day">Péntek</th>
-            </tr>
-        </thead>
+        <?= timetableHeader() ?>
         <tbody>
             <?php
             for ($i = 0; $i < 9; $i++) {

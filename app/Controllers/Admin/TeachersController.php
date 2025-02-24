@@ -114,4 +114,24 @@ class TeachersController extends BaseController
             ));
         }
     }
+
+    public function availability($id): string
+    {
+        $teacherAvailabilityModel = new \App\Models\TeacherAvailabilityModel();
+
+        $tAvail = $teacherAvailabilityModel->getTeacherAvailability($id);
+        $availibility = array();
+        if ($tAvail != null) {
+            foreach ($tAvail as $ta) {
+                $availibility[$ta['day']][$ta['hour']] = 1;
+            }
+        }
+
+        if (strtolower($this->request->getMethod()) !== 'post') {
+            return view('admin/teachers/availability.php', array(
+                'data' => $availibility,
+                'teacher' => $this->model->find($id),
+            ));
+        }
+    }
 }

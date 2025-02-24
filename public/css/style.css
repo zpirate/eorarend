@@ -68,3 +68,11 @@ div#pagination nav {
     font-size: .8em;
     text-align: right;
 }
+
+td.available {
+    background-color: green;
+}   
+
+td.unavailable {
+    background-color: red;
+}

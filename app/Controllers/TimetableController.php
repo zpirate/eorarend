@@ -3,23 +3,40 @@
 namespace App\Controllers;
 
 use App\Models\TimetableModel;
+use App\Models\ClassModel;
 
 class TimetableController extends BaseController
 {
-    public function index(): string
+    public function index($classId): string
     {
         helper('array');
         $model = new TimetableModel();
+        $classModel = new ClassModel();
         $data = array(
-            'timetable' => array()
+            'timetable' => array(),
+            'active' => $classId
         );
 
-        $timetable = $model->getTimetableForClass(1);
+        $data['classes'] = $classModel->getCodetable();
+        if ($classId == 0) {
+            if (auth()->getProvider()->isStudent()) {
+                $classId = auth()->getProvider()->getClassId();
+            } elseif (auth()->getProvider()->isAdmin()) {
+                $classId = $data['classes'][0]['key'];
+                $data['active'] = $classId;
+            } 
+        }
+
+        if (auth()->getProvider()->isTeacher()) {
+            $timetable = $model->getTimetableForTeacher(auth()->user()->id);
+        } else {
+            $timetable = $model->getTimetableForClass($classId);
+        }
+
         for ($i = 0; $i < 5; $i++) {
             $data['timetable'][$i] = $this->getDataByDay($timetable, $i + 1);
         }
 
-        $data['classes'] = array(array('key' => 1, 'value' => '9.A'));
         return view('timetable', $data);
     }
 

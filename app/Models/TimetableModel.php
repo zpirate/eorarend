@@ -61,8 +61,18 @@ class TimetableModel extends Model
         //return $this;
     }
 
-    // public function getTeachersData()
-    // {
-    //     return $this->getTeachersFull()->get()->getResultArray();
-    // }
+    public function getTimetableForTeacher($teacher_id)
+    {
+        return $this->builder()->select('timetables.*, 
+                                classes.name as teacher_name, 
+                                subjects.name as subject_name, 
+                                classrooms.name as classroom_name')
+            ->join('classes', 'classes.id=timetables.class_id', 'left')
+            ->join('subjects', 'subjects.id=timetables.subject_id', 'left')
+            ->join('teachers', 'teachers.id=timetables.teacher_id', 'left')
+            ->join('classrooms', 'classrooms.id=timetables.classroom_id', 'left')
+            ->where('timetables.teacher_id', $teacher_id)->get()->getResultArray();
+        //return $this;
+    }
+
 }
