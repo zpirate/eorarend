@@ -20,14 +20,16 @@
                 <td>
                     <a href='<?= site_url("admin/years/update/{$data['id']}"); ?>' title='Módosítás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
                         <i class='far fa-edit'></i></a>
-                        <form action='<?= site_url("admin/years/show"); ?>' method='post' style='display: inline;'>
-                            <input type='hidden' name='method' value='delete'>
-                            <input type='hidden' name='id' value='<?= $data['id'] ?>'>
-                            <button type='submit' title='Törlés' data-toggle='tooltip' class='btn btn-sm btn-danger me-2'
-                                onclick="return confirm('Biztosan törli az évfolyamot(<?= $data['name'] ?>)?');">
-                                <i class='far fa-trash-alt'></i>
-                            </button>
-                        </form>
+                    <a href='<?= site_url("admin/years/subjects/{$data['id']}"); ?>' title='Heti óraszámok' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
+                        <i class='far fa-calendar'></i></a>
+                    <form action='<?= site_url("admin/years/show"); ?>' method='post' style='display: inline;'>
+                        <input type='hidden' name='method' value='delete'>
+                        <input type='hidden' name='id' value='<?= $data['id'] ?>'>
+                        <button type='submit' title='Törlés' data-toggle='tooltip' class='btn btn-sm btn-danger me-2'
+                            onclick="return confirm('Biztosan törli az évfolyamot(<?= $data['name'] ?>)?');">
+                            <i class='far fa-trash-alt'></i>
+                        </button>
+                    </form>
             </tr>
         <?php endforeach; ?>
     </tbody>

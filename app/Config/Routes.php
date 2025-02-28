@@ -38,6 +38,7 @@ $routes->group('admin', static function ($routes) {
         $routes->get('show', 'Admin\YearsController::show');
         $routes->get('update/(:num)', 'Admin\YearsController::update/$1');
         $routes->post('show', 'Admin\YearsController::show');
+        $routes->get('subjects/(:num)', 'Admin\YearsController::subjects/$1');
         $routes->get('add', 'Admin\YearsController::add');
         });
 });
