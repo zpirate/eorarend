@@ -16,13 +16,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?= url_to('home') ?>">Főoldal</a>
+                            <a name="home" class="nav-link active" href="<?= url_to('home') ?>">Főoldal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= url_to('timetable') ?>">Órarend</a>
+                            <a name="timetable" class="nav-link" href="<?= url_to('timetable') ?>">Órarend</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= url_to('teachers') ?>">Tanárok</a>
+                            <a name="teachers" class="nav-link" href="<?= url_to('teachers') ?>">Tanárok</a>
                         </li>
                         <?php
                         $hide = "d-none";

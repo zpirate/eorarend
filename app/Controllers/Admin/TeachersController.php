@@ -22,8 +22,6 @@ class TeachersController extends BaseController
         $users = new UserModel();
         $message = array('text' => '', 'type' => '');
 
-        //$this->model->getTeachersFullSubject();
-
         if (strtolower($this->request->getMethod()) == 'post') {
             if ($this->request->getPost('method') == 'delete') {
                 try {
@@ -49,6 +47,45 @@ class TeachersController extends BaseController
                         'teacher' => $this->model->find($this->request->getPost()['teacher_id']),
                         'subjects' => $subjectModel->getCodeTable()
                     ));
+                } else {
+                    $message = $this->addMessage('success', 'A mentés sikerült.');
+                }
+            } elseif (array_key_exists('save', $this->request->getPost()) && $this->request->getPost('save') == 'availability') {
+                $teacherAvailabilityModel = new \App\Models\TeacherAvailabilityModel();
+                $availability = $this->request->getPost('availability');
+                $teacher_id = $this->request->getPost('teacher_id');
+                $aArr = explode(';', $availability);
+                $teacherAvailabilityModel->emptyTeacherAvailability($teacher_id);
+                $saved = true;
+                foreach ($aArr as $aRec) {
+                    if (empty($aRec)) {
+                        continue;
+                    }
+                    $aItem = explode(',', $aRec);
+                    $data = array(
+                        'teacher_id' => $teacher_id,
+                        'day' => $aItem[0],
+                        'hour' => $aItem[1]
+                    );
+                    $saved = $saved && $teacherAvailabilityModel->save($data);
+                }
+                if (!$saved) {
+                    $teacherAvailabilityModel = new \App\Models\TeacherAvailabilityModel();
+
+                    $tAvail = $teacherAvailabilityModel->getTeacherAvailability($teacher_id);
+                    $availibility = array();
+                    if ($tAvail != null) {
+                        foreach ($tAvail as $ta) {
+                            $availibility[$ta['day']][$ta['hour']] = 1;
+                        }
+                    }
+
+                    if (strtolower($this->request->getMethod()) !== 'post') {
+                        return view('admin/teachers/availability.php', array(
+                            'data' => $availibility,
+                            'teacher' => $this->model->find($teacher_id),
+                        ));
+                    }
                 } else {
                     $message = $this->addMessage('success', 'A mentés sikerült.');
                 }

@@ -22,12 +22,9 @@ function getOpenDivLabel(): String
     return "<div class='col-12 mt-2'>";
 }
 
-/**
- * Itt kell inicializalni a globalis valtozokat
- */
-function start_form($action)
+function start_form($action, $formId = 'formId'): string
 {
-    $html = form_open($action);
+    $html = form_open($action, array('id' => $formId));
     $html .= "<div class='container'><div class='row'>";
     return $html;
 }
@@ -151,15 +148,15 @@ function show_error(string $field): string
     return $html;
 }
 
-function timetableHeader() {
+function timetableHeader($ondblclick = ""): string{
     return "<thead>
             <tr>
                 <th class=\"tt-head tt-head-lesson\">Óra</th>
-                <th class=\"tt-head tt-head-day\">Hétfő</th>
-                <th class=\"tt-head tt-head-day\">Kedd</th>
-                <th class=\"tt-head tt-head-day\">Szerda</th>
-                <th class=\"tt-head tt-head-day\">Csütörtök</th>
-                <th class=\"tt-head tt-head-day\">Péntek</th>
+                <th id=\"th_1\" class=\"tt-head tt-head-day\"". (strlen($ondblclick) == 0 ? "" : " ondblclick='{$ondblclick}'") . ">Hétfő</th>
+                <th id=\"th_2\" class=\"tt-head tt-head-day\"". (strlen($ondblclick) == 0 ? "" : " ondblclick='{$ondblclick}'") . ">Kedd</th>
+                <th id=\"th_3\" class=\"tt-head tt-head-day\"". (strlen($ondblclick) == 0 ? "" : " ondblclick='{$ondblclick}'") . ">Szerda</th>
+                <th id=\"th_4\" class=\"tt-head tt-head-day\"". (strlen($ondblclick) == 0 ? "" : " ondblclick='{$ondblclick}'") . ">Csütörtök</th>
+                <th id=\"th_5\" class=\"tt-head tt-head-day\"". (strlen($ondblclick) == 0 ? "" : " ondblclick='{$ondblclick}'") . ">Péntek</th>
             </tr>
         </thead>";
 }

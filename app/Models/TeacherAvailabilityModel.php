@@ -31,8 +31,8 @@ class TeacherAvailabilityModel extends Model
     protected $validationRules      = [
         'id' => 'permit_empty|is_natural_no_zero',
         'teacher_id' => "required",
-        'day' => "required|between[1,5]",
-        'hour' => "required|between[1,{DAY_HOURS}]"];
+        'day' => "required|greater_than[0]|less_than_equal_to[5]",
+        'hour' => "required|greater_than[0]|less_than_equal_to[{DAY_HOURS}]"];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
@@ -51,5 +51,10 @@ class TeacherAvailabilityModel extends Model
     public function getTeacherAvailability($id)
     {
         return $this->where('teacher_id', $id)->get()->getResultArray();
+    }
+
+    public function emptyTeacherAvailability($id)
+    {
+        return $this->where('teacher_id', $id)->delete();
     }
 }

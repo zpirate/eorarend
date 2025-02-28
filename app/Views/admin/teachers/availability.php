@@ -12,12 +12,12 @@
     echo start_form('admin/teachers/show');
     echo form_hidden('save', 'availability');
     echo form_hidden('teacher_id', $teacher['id']);
-    echo form_hidden('availabality', '');
+    echo form_hidden('availability', '');
     ?>
 
     <div class="mx-5 my-2">
         <table class="table table-bordered border-primary">
-            <?= timetableHeader() ?>
+            <?= timetableHeader("setFullDayAvailability(this)") ?>
             <tbody>
                 <?php
                 for ($i = 1; $i < 10; $i++) {
@@ -41,11 +41,12 @@
                 <?php } ?>
             </tbody>
         </table>
+        <div class="fs-6">A napra duplát kattintva az egész nap rendelkezésre állása módosítható</div>
     </div>
     <?php
     echo start_button_group();
     echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button', 'onclick' => "window.location.href='" . site_url('admin/teachers/show') . "'"));
-    echo button('submit', 'Mentés', 'button', array('class' => 'btn btn-primary frm-button', 'onclick' => "saveAvailability()"));
+    echo button('btnSubmit', 'Mentés', 'button', array('class' => 'btn btn-primary frm-button', 'onclick' => "saveAvailability()"));
     echo end_button_group();
     echo end_form();
     ?>
