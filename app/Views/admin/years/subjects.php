@@ -14,10 +14,8 @@
     echo form_hidden('year_id', $year['id']);
     
     // subjects
-    $allSubjects = array();
-    foreach ($subjects as $subject) {
-        $sub = array('id' => $subject['key'], 'title' => $subject['value']);
-        echo '<h2>' . $subject['value'] . '</h2>';
+    foreach ($data as $row) {
+        echo input_field("subject_{$row['subject_id']}", $row['name'], $row['lesson_number']);
     }
 
     echo start_button_group();

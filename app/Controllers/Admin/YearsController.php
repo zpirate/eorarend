@@ -35,87 +35,26 @@ class YearsController extends BaseController
                 }   
             } elseif (array_key_exists('save', $this->request->getPost()) && $this->request->getPost('save') == 'lessons') {
                     $lessonsPerWeekModel = new \App\Models\LessonsPerWeekModel();
-                    $saved = $lessonsPerWeekModel->saveSubjects($this->request->getPost());
+                    $yearId = $this->request->getPost('year_id');
+                    $saved = $lessonsPerWeekModel->saveLessons($this->request->getPost());
                     if (!$saved) {
-                        $lessonsPerWeekModel = new SubjectModel();
-                        $teacherSubjectModel = new \App\Models\LessonsPerWeekModel();
-    
-                        return view('admin/teachers/subjects.php', array(
-                            'data' => $teacherSubjectModel->getSubjects($this->request->getPost()['teacher_id']),
-                            'teacher' => $this->model->find($this->request->getPost()['teacher_id']),
-                            'subjects' => $lessonsPerWeekModel->getCodeTable()
+                        return view('admin/years/subjects.php', array(
+                            'data' => $lessonsPerWeekModel->getLessonsWithSubject($yearId),
+                            'year' => $this->model->find($yearId),
                         ));
                     } else {
                         $message = $this->addMessage('success', 'A mentés sikerült.');
                     }
-                } elseif (array_key_exists('save', $this->request->getPost()) && $this->request->getPost('save') == 'availability') {
-                    $teacherAvailabilityModel = new \App\Models\TeacherAvailabilityModel();
-                    $availability = $this->request->getPost('availability');
-                    $teacher_id = $this->request->getPost('teacher_id');
-                    $aArr = explode(';', $availability);
-                    $teacherAvailabilityModel->emptyTeacherAvailability($teacher_id);
-                    $saved = true;
-                    foreach ($aArr as $aRec) {
-                        if (empty($aRec)) {
-                            continue;
-                        }
-                        $aItem = explode(',', $aRec);
-                        $data = array(
-                            'teacher_id' => $teacher_id,
-                            'day' => $aItem[0],
-                            'hour' => $aItem[1]
-                        );
-                        $saved = $saved && $teacherAvailabilityModel->save($data);
-                    }
-                    if (!$saved) {
-                        $teacherAvailabilityModel = new \App\Models\TeacherAvailabilityModel();
-    
-                        $tAvail = $teacherAvailabilityModel->getTeacherAvailability($teacher_id);
-                        $availibility = array();
-                        if ($tAvail != null) {
-                            foreach ($tAvail as $ta) {
-                                $availibility[$ta['day']][$ta['hour']] = 1;
-                            }
-                        }
-    
-                        if (strtolower($this->request->getMethod()) !== 'post') {
-                            return view('admin/teachers/availability.php', array(
-                                'data' => $availibility,
-                                'teacher' => $this->model->find($teacher_id),
-                            ));
-                        }
-                    } else {
-                        $message = $this->addMessage('success', 'A mentés sikerült.');
-                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             } else {
-                if ($this->request->getPost('method') == 'delete'){
-                    $saved = $this->model->save($this->request->getPost());
-                    if (!$saved) {
-                        return view('admin/years/update.php', array(
-                            'message' => $this->addMessage('danger', 'Hiba történt a mentés során.'),
-                            'data' => $this->request->getPost(),
-                            'errors' => $this->model->errors(),
-                        ));
-                    } else {
-                        $message = $this->addMessage('success', 'A mentés sikerült.');
-                    }
+                $saved = $this->model->save($this->request->getPost());
+                if (!$saved) {
+                    return view('admin/years/update.php', array(
+                        'message' => $this->addMessage('danger', 'Hiba történt a mentés során.'),
+                        'data' => $this->request->getPost(),
+                        'errors' => $this->model->errors(),
+                    ));
+                } else {
+                    $message = $this->addMessage('success', 'A mentés sikerült.');
                 }
             }
         }
@@ -150,14 +89,12 @@ class YearsController extends BaseController
 
     public function subjects($id): string
     {
-        $subjectModel = new SubjectModel();
         $lessonsPerWeekModel = new \App\Models\LessonsPerWeekModel();
 
         if (strtolower($this->request->getMethod()) !== 'post') {
             return view('admin/years/subjects.php', array(
-                'data' => $lessonsPerWeekModel->find($id),
+                'data' => $lessonsPerWeekModel->getLessonsWithSubject($id),
                 'year' => $this->model->find($id),
-                'subjects' => $subjectModel->getCodeTable()
             ));
         }
     }
