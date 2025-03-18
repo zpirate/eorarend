@@ -1,7 +1,6 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('content') ?>
-<script src="https://kit.fontawesome.com/6b773fe9e4.js" crossorigin="anonymous"></script>
 
 <h1 class="text-center">Tanárok karbantartása</h1>
 <table class="table table-bordered m-3">
@@ -23,18 +22,18 @@
                 <td><?= $data['subjects'] ?></td>
                 <td>
                     <a href='<?= site_url("admin/teachers/update/{$data['id']}"); ?>' title='Módosítás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
-                        <i class='far fa-edit'></i></a>
+                        <span class='icon icon-edit'></span></a>
                     <a href='<?= site_url("admin/teachers/subjects/{$data['id']}"); ?>' title='Tantárgyak' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
-                        <i class='fas fa-book'></i></a>
-                        <a href='<?= site_url("admin/teachers/availability/{$data['id']}"); ?>' title='Rendelkezésre állás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
-                        <i class='far fa-calendar'></i></a>
+                        <span class='icon icon-subject'></span></a>
+                    <a href='<?= site_url("admin/teachers/availability/{$data['id']}"); ?>' title='Rendelkezésre állás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
+                        <span class='icon icon-calendar'></span></a>
                     <?php if ($data['classcount'] == 0) : ?>
                         <form action='<?= site_url("admin/teachers/show"); ?>' method='post' style='display: inline;'>
                             <input type='hidden' name='method' value='delete'>
                             <input type='hidden' name='id' value='<?= $data['id'] ?>'>
                             <button type='submit' title='Törlés' data-toggle='tooltip' class='btn btn-sm btn-danger me-2'
                                 onclick="return confirm('Biztosan törli a tanárt (<?= $data['name'] ?>)?');">
-                                <i class='far fa-trash-alt'></i>
+                                <span class='icon icon-trash'></span>
                             </button>
                         </form>
                     <?php endif; ?>

@@ -10,8 +10,7 @@ $routes->get('/home', 'HomeController::index');
 $routes->get('/timetable', 'TimetableController::index/0');
 $routes->get('/timetable/(:num)', 'TimetableController::index/$1');
 $routes->get('/teachers', 'TeachersController::index');
-
-//$routes->get('/admin/teachers/edit/(:num)', 'Admin\TeachersController::edit/$1');
+$routes->get('/teacherAvailability', 'Admin\TeachersController::teacherAvailability');
 
 $routes->group('admin', static function ($routes) {
     $routes->group('teachers', static function ($routes) {
@@ -70,5 +69,7 @@ $routes->group('admin', static function ($routes) {
         });
 });
 
+/* Technical */
+$routes->get('/admin/setup', 'Admin\SetupController::setup');
 
 service('auth')->routes($routes);

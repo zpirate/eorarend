@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 14, 2025 at 09:03 AM
+-- Generation Time: Mar 12, 2025 at 03:18 PM
 -- Server version: 8.0.40-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.20
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `eorarend`
 --
+CREATE DATABASE IF NOT EXISTS `eorarend` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci;
+USE `eorarend`;
 
 -- --------------------------------------------------------
 
@@ -42,7 +44,9 @@ CREATE TABLE `auth_groups_users` (
 INSERT INTO `auth_groups_users` (`id`, `user_id`, `group`, `created_at`) VALUES
 (1, 1, 'user', '2025-01-28 13:17:57'),
 (2, 1, 'admin', '2025-01-28 13:17:57'),
-(10, 9, 'student', '2025-02-12 17:52:12');
+(10, 9, 'student', '2025-02-12 17:52:12'),
+(11, 10, 'student', '2025-02-21 09:44:33'),
+(13, 12, 'teacher', '2025-02-21 15:30:59');
 
 -- --------------------------------------------------------
 
@@ -71,8 +75,11 @@ CREATE TABLE `auth_identities` (
 --
 
 INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secret2`, `expires`, `extra`, `force_reset`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'email_password', 'Kaló Zoltán', 'bajormotoros@gmail.com', '$2y$12$qdJUgwaZQF2F7gqoXEEe2ONcjqZ4bDd1YeXD6OretPz/kzhxkohYq', NULL, NULL, 0, '2025-02-14 07:12:58', '2025-01-28 13:17:57', '2025-02-14 07:12:58'),
-(7, 9, 'email_password', NULL, 'kalo.bence007@gmail.com', '$2y$12$oRfhtVjh/EjN.BeTsjWdjuGnI/2PXQwSneo5onhHN0dKMvHbqkrna', NULL, NULL, 0, NULL, '2025-02-12 17:52:12', '2025-02-12 17:52:12');
+(1, 1, 'email_password', 'Kaló Zoltán', 'admin@gmail.com', '$2y$12$qdJUgwaZQF2F7gqoXEEe2ONcjqZ4bDd1YeXD6OretPz/kzhxkohYq', NULL, NULL, 0, '2025-03-12 14:15:53', '2025-01-28 13:17:57', '2025-03-12 14:15:53'),
+(7, 9, 'email_password', NULL, 'stuednt1@gmail.com', '$2y$12$oRfhtVjh/EjN.BeTsjWdjuGnI/2PXQwSneo5onhHN0dKMvHbqkrna', NULL, NULL, 0, '2025-03-12 14:16:25', '2025-02-12 17:52:12', '2025-03-12 14:16:25'),
+(8, 1, 'magic-link', NULL, 'f64d4d3f3b5cd84524a3', NULL, '2025-02-17 13:29:19', NULL, 0, NULL, '2025-02-17 12:29:19', '2025-02-17 12:29:19'),
+(9, 10, 'email_password', NULL, 'student2@gmail.com', '$2y$12$.Z8nHZROfWVh.AByDIOY7.t2EUw/V39gM1N2YQUeWKXoJL2z./6SK', NULL, NULL, 0, '2025-03-12 14:16:35', '2025-02-21 09:44:33', '2025-03-12 14:16:35'),
+(11, 12, 'email_password', NULL, 'teacher1@gmail.com', '$2y$12$QW.jdMIzSUTv01sDLtBEI.p/Cd7iTN.rIMH4tuX3YZ4SDy5EzLTfO', NULL, NULL, 0, '2025-03-12 14:16:48', '2025-02-21 15:30:59', '2025-03-12 14:16:48');
 
 -- --------------------------------------------------------
 
@@ -130,7 +137,68 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identif
 (31, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-12 16:44:43', 1),
 (32, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-12 17:53:04', 1),
 (33, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-13 12:22:15', 1),
-(34, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-14 07:12:58', 1);
+(34, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-14 07:12:58', 1),
+(35, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-14 11:44:08', 1),
+(36, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-14 18:06:26', 1),
+(37, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-14 20:46:57', 1),
+(38, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-17 10:44:15', 1),
+(39, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-17 12:29:07', 1),
+(40, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'zkalo', NULL, '2025-02-17 12:34:42', 0),
+(41, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-17 12:34:47', 1),
+(42, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 09:33:22', 1),
+(43, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 09:50:39', 1),
+(44, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 10:12:46', 1),
+(45, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 10:13:47', 1),
+(46, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 10:25:07', 1),
+(47, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 10:36:09', 1),
+(48, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 11:54:32', 1),
+(49, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 12:12:37', 1),
+(50, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 13:06:21', 1),
+(51, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 13:27:02', 1),
+(52, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 13:28:39', 1),
+(53, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 13:43:16', 1),
+(54, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 13:54:45', 1),
+(55, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 13:58:47', 1),
+(56, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'bkalo', 9, '2025-02-21 14:14:17', 1),
+(57, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 14:24:27', 1),
+(58, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 14:24:40', 1),
+(59, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-02-21 17:34:03', 1),
+(60, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-02-21 17:40:21', 1),
+(61, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 17:50:33', 1),
+(62, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 17:52:10', 1),
+(63, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'bkalo', 9, '2025-02-21 17:52:19', 1),
+(64, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-02-21 17:52:27', 1),
+(65, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-02-21 18:17:08', 1),
+(66, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'bkalo', 9, '2025-02-21 18:17:30', 1),
+(67, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-02-21 18:17:45', 1),
+(68, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-21 18:18:04', 1),
+(69, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-24 15:01:38', 1),
+(70, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-25 08:59:30', 1),
+(71, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-25 13:18:25', 1),
+(72, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-02-25 14:38:42', 1),
+(73, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-03 12:13:42', 1),
+(74, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-04 06:26:07', 1),
+(75, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-07 11:32:27', 1),
+(76, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-03-07 11:33:00', 1),
+(77, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'root', NULL, '2025-03-07 12:08:22', 0),
+(78, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-07 12:08:26', 1),
+(79, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-03-07 12:09:16', 1),
+(80, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-07 12:22:48', 1),
+(81, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-03-07 12:27:43', 1),
+(82, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-07 12:33:33', 1),
+(83, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-03-07 20:26:33', 1),
+(84, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-03-07 20:26:53', 1),
+(85, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-07 20:27:18', 1),
+(86, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-11 12:21:20', 1),
+(87, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'susuk', 12, '2025-03-11 12:39:06', 1),
+(88, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-11 12:50:35', 1),
+(89, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-11 12:52:02', 1),
+(90, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'username', 'korina', 10, '2025-03-11 12:52:24', 1),
+(91, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'korina', NULL, '2025-03-12 14:15:46', 0),
+(92, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-12 14:15:53', 1),
+(93, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'student1', 9, '2025-03-12 14:16:25', 1),
+(94, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'student2', 10, '2025-03-12 14:16:35', 1),
+(95, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'teacher1', 12, '2025-03-12 14:16:48', 1);
 
 -- --------------------------------------------------------
 
@@ -251,6 +319,13 @@ CREATE TABLE `lessons_per_week` (
   `lesson_number` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
+--
+-- Dumping data for table `lessons_per_week`
+--
+
+INSERT INTO `lessons_per_week` (`id`, `year_id`, `subject_id`, `lesson_number`) VALUES
+(1, 1, 3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -298,6 +373,28 @@ CREATE TABLE `settings` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `students`
+--
+
+DROP TABLE IF EXISTS `students`;
+CREATE TABLE `students` (
+  `id` int NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `educational_id` varchar(20) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `class_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `educational_id`, `class_id`) VALUES
+(1, 'Tanuló Kettő', '111', 1),
+(2, 'Tanuló Egy', '222', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subjects`
 --
 
@@ -313,7 +410,9 @@ CREATE TABLE `subjects` (
 
 INSERT INTO `subjects` (`id`, `name`) VALUES
 (1, 'Matematika'),
-(2, 'Testnevelés');
+(2, 'Testnevelés'),
+(3, 'Fizika'),
+(4, 'Informatika');
 
 -- --------------------------------------------------------
 
@@ -336,14 +435,15 @@ INSERT INTO `teachers` (`id`, `name`, `user_id`) VALUES
 (1, 'Babosa János', 1),
 (2, 'Kovács Béla', 0),
 (5, 'Antaliczky Istvánné', 0),
-(6, 'Horvath Tamas', 0),
-(9, 'Kaló Bence', 0),
+(6, 'Horváth Tamás', 0),
+(9, 'Szekeres Róbert', 0),
 (10, 'Németh Ferenc', 0),
 (11, 'Schiller Lajosné', 0),
 (12, 'Tóth Adrienn', 0),
 (16, 'Szabó Ervin', 0),
 (19, 'Petőfi Zoltán', 0),
-(20, 'Darvas Iván', 0);
+(20, 'Darvas Iván', 0),
+(22, 'Tanár Egy', 12);
 
 -- --------------------------------------------------------
 
@@ -357,6 +457,71 @@ CREATE TABLE `teachers_subjects` (
   `teacher_id` int NOT NULL,
   `subject_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- Dumping data for table `teachers_subjects`
+--
+
+INSERT INTO `teachers_subjects` (`id`, `teacher_id`, `subject_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(4, 5, 3),
+(6, 20, 2),
+(7, 22, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher_availability`
+--
+
+DROP TABLE IF EXISTS `teacher_availability`;
+CREATE TABLE `teacher_availability` (
+  `id` int NOT NULL,
+  `teacher_id` int NOT NULL,
+  `day` int NOT NULL,
+  `hour` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- Dumping data for table `teacher_availability`
+--
+
+INSERT INTO `teacher_availability` (`id`, `teacher_id`, `day`, `hour`) VALUES
+(0, 5, 1, 1),
+(0, 5, 2, 1),
+(0, 5, 2, 2),
+(0, 5, 2, 3),
+(0, 5, 2, 4),
+(0, 5, 2, 5),
+(0, 5, 2, 6),
+(0, 5, 2, 7),
+(0, 5, 2, 8),
+(0, 5, 2, 9),
+(0, 5, 3, 2),
+(0, 5, 4, 1),
+(0, 5, 4, 2),
+(0, 5, 4, 3),
+(0, 5, 4, 4),
+(0, 5, 4, 5),
+(0, 5, 4, 6),
+(0, 5, 4, 7),
+(0, 5, 4, 8),
+(0, 5, 4, 9),
+(0, 5, 5, 9),
+(0, 1, 2, 2),
+(0, 1, 2, 5),
+(0, 1, 3, 1),
+(0, 1, 3, 3),
+(0, 1, 3, 4),
+(0, 1, 3, 6),
+(0, 1, 3, 8),
+(0, 1, 3, 9),
+(0, 1, 4, 7),
+(0, 1, 5, 4),
+(0, 1, 5, 5),
+(0, 22, 1, 1),
+(0, 22, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -380,7 +545,7 @@ CREATE TABLE `timetables` (
 --
 
 INSERT INTO `timetables` (`id`, `class_id`, `day`, `lesson_of_day`, `subject_id`, `teacher_id`, `classroom_id`) VALUES
-(1, 1, 1, 1, 1, 1, 1),
+(1, 1, 1, 1, 1, 22, 1),
 (2, 1, 1, 2, 1, 2, 2),
 (3, 1, 1, 3, 2, 5, 6),
 (4, 1, 1, 4, NULL, NULL, NULL),
@@ -389,7 +554,7 @@ INSERT INTO `timetables` (`id`, `class_id`, `day`, `lesson_of_day`, `subject_id`
 (7, 1, 1, 7, NULL, NULL, NULL),
 (8, 1, 1, 8, NULL, NULL, NULL),
 (9, 1, 1, 9, NULL, NULL, NULL),
-(10, 1, 2, 1, 2, 2, 6),
+(10, 2, 2, 1, 2, 22, 6),
 (11, 1, 2, 2, 1, 9, 1),
 (12, 1, 2, 3, NULL, NULL, NULL),
 (13, 1, 2, 4, NULL, NULL, NULL),
@@ -399,23 +564,23 @@ INSERT INTO `timetables` (`id`, `class_id`, `day`, `lesson_of_day`, `subject_id`
 (17, 1, 2, 8, NULL, NULL, NULL),
 (18, 1, 2, 9, NULL, NULL, NULL),
 (19, 1, 3, 1, NULL, NULL, NULL),
-(20, 1, 3, 2, 1, 5, 2),
+(20, 1, 3, 2, 1, 22, 2),
 (21, 1, 3, 3, 1, 6, 2),
 (22, 1, 3, 4, NULL, NULL, NULL),
 (23, 1, 3, 5, 2, 1, 1),
 (24, 1, 3, 6, NULL, NULL, NULL),
 (25, 1, 3, 7, NULL, NULL, NULL),
-(26, 1, 3, 8, NULL, NULL, NULL),
+(26, 1, 3, 8, NULL, 22, NULL),
 (27, 1, 3, 9, NULL, NULL, NULL),
 (28, 1, 4, 1, NULL, NULL, NULL),
 (29, 1, 4, 2, NULL, NULL, NULL),
-(30, 1, 4, 3, NULL, NULL, NULL),
+(30, 1, 4, 3, NULL, 22, NULL),
 (31, 1, 4, 4, NULL, NULL, NULL),
 (32, 1, 4, 5, NULL, NULL, NULL),
 (33, 1, 4, 6, NULL, NULL, NULL),
 (34, 1, 4, 7, NULL, NULL, NULL),
 (35, 1, 4, 8, NULL, NULL, NULL),
-(36, 1, 4, 9, NULL, NULL, NULL),
+(36, 1, 4, 9, NULL, 22, NULL),
 (37, 1, 5, 1, NULL, NULL, NULL),
 (38, 1, 5, 2, NULL, NULL, NULL),
 (39, 1, 5, 3, NULL, NULL, NULL),
@@ -437,6 +602,7 @@ CREATE TABLE `users` (
   `id` int UNSIGNED NOT NULL,
   `username` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `full_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `educational_id` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status_message` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
@@ -450,34 +616,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `full_name`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'admin', 'Kaló Zoltán', NULL, NULL, 1, '2025-02-14 08:01:39', '2025-01-28 13:17:56', '2025-01-28 13:17:57', NULL),
-(9, 'bkalo', 'Kaló Bence', NULL, NULL, 1, '2025-02-12 17:52:20', '2025-02-12 17:52:12', '2025-02-12 17:52:12', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_orig`
---
-
-DROP TABLE IF EXISTS `users_orig`;
-CREATE TABLE `users_orig` (
-  `id` int NOT NULL,
-  `email` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `username` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `fullname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `password` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `status` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `user_right` enum('student','teacher','admin','') CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL DEFAULT 'student'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
-
---
--- Dumping data for table `users_orig`
---
-
-INSERT INTO `users_orig` (`id`, `email`, `username`, `fullname`, `password`, `status`, `user_right`) VALUES
-(11, 'bajormotoros@gmail.com', 'admin', 'Kaló Zoltán', '$2y$10$3gn46Ai/WBjej0vvdB18Z.AlOmsdfIuk6I5MOsUFcxOt6uFbukPsS', 'active', 'admin'),
-(15, 'kalo.bence007@gmail.com', 'user', 'Kaló Bence', '$2y$10$3gn46Ai/WBjej0vvdB18Z.AlOmsdfIuk6I5MOsUFcxOt6uFbukPsS', 'active', 'student');
+INSERT INTO `users` (`id`, `username`, `full_name`, `educational_id`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'admin', 'Admin User', NULL, NULL, NULL, 1, '2025-03-12 14:16:12', '2025-01-28 13:17:56', '2025-01-28 13:17:57', NULL),
+(9, 'student1', 'Tanuló Egy', '222', NULL, NULL, 1, '2025-03-12 14:16:25', '2025-02-12 17:52:12', '2025-02-12 17:52:12', NULL),
+(10, 'student2', 'Tanuló Kettő', '111', NULL, NULL, 1, '2025-03-12 14:16:35', '2025-02-21 09:44:33', '2025-02-21 09:44:33', NULL),
+(12, 'teacher1', 'Tanár Egy', '', NULL, NULL, 1, '2025-03-12 14:16:54', '2025-02-21 15:30:59', '2025-02-21 15:30:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -498,6 +641,20 @@ CREATE TABLE `years` (
 INSERT INTO `years` (`id`, `name`) VALUES
 (1, 'OKJ1'),
 (2, 'OKJ2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `years_subjects`
+--
+
+DROP TABLE IF EXISTS `years_subjects`;
+CREATE TABLE `years_subjects` (
+  `id` int NOT NULL,
+  `year_id` int NOT NULL,
+  `subject_id` int NOT NULL,
+  `lessons_per_week` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- Indexes for dumped tables
@@ -588,6 +745,12 @@ ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
@@ -604,6 +767,12 @@ ALTER TABLE `teachers`
 --
 ALTER TABLE `teachers_subjects`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `teacher_availability`
+--
+ALTER TABLE `teacher_availability`
+  ADD KEY `teacher_avail_teacher_id_fk` (`teacher_id`);
 
 --
 -- Indexes for table `timetables`
@@ -623,16 +792,18 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `users_orig`
---
-ALTER TABLE `users_orig`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `years`
 --
 ALTER TABLE `years`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `years_subjects`
+--
+ALTER TABLE `years_subjects`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `years_sub_year_fk` (`year_id`),
+  ADD KEY `years_sub_subject_fk` (`subject_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -642,19 +813,19 @@ ALTER TABLE `years`
 -- AUTO_INCREMENT for table `auth_groups_users`
 --
 ALTER TABLE `auth_groups_users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `auth_identities`
 --
 ALTER TABLE `auth_identities`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions_users`
@@ -696,7 +867,7 @@ ALTER TABLE `codes`
 -- AUTO_INCREMENT for table `lessons_per_week`
 --
 ALTER TABLE `lessons_per_week`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -711,22 +882,28 @@ ALTER TABLE `settings`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `teachers_subjects`
 --
 ALTER TABLE `teachers_subjects`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `timetables`
@@ -738,19 +915,19 @@ ALTER TABLE `timetables`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `users_orig`
---
-ALTER TABLE `users_orig`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `years`
 --
 ALTER TABLE `years`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `years_subjects`
+--
+ALTER TABLE `years_subjects`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -788,6 +965,12 @@ ALTER TABLE `classes`
   ADD CONSTRAINT `class_year_fk` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
+-- Constraints for table `teacher_availability`
+--
+ALTER TABLE `teacher_availability`
+  ADD CONSTRAINT `teacher_avail_teacher_id_fk` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
 -- Constraints for table `timetables`
 --
 ALTER TABLE `timetables`
@@ -795,6 +978,13 @@ ALTER TABLE `timetables`
   ADD CONSTRAINT `timetable_classroom_id_fk` FOREIGN KEY (`classroom_id`) REFERENCES `classrooms` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `timetable_subject_id_fk` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `timetable_teacher_id_fk` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `years_subjects`
+--
+ALTER TABLE `years_subjects`
+  ADD CONSTRAINT `years_sub_subject_fk` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `years_sub_year_fk` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

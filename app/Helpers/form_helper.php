@@ -2,10 +2,6 @@
 
 $validationErrors;
 
-use Config\Validation;
-use CodeIgniter\Validation\Exceptions\ValidationException;
-
-
 function setError($error)
 {
     global $validationErrors;

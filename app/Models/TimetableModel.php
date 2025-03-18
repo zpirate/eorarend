@@ -61,7 +61,7 @@ class TimetableModel extends Model
         //return $this;
     }
 
-    public function getTimetableForTeacher($teacher_id)
+    public function getTimetableForTeacher($userId)
     {
         return $this->builder()->select('timetables.*, 
                                 classes.name as teacher_name, 
@@ -71,7 +71,7 @@ class TimetableModel extends Model
             ->join('subjects', 'subjects.id=timetables.subject_id', 'left')
             ->join('teachers', 'teachers.id=timetables.teacher_id', 'left')
             ->join('classrooms', 'classrooms.id=timetables.classroom_id', 'left')
-            ->where('timetables.teacher_id', $teacher_id)->get()->getResultArray();
+            ->where('teachers.user_id', $userId)->get()->getResultArray();
         //return $this;
     }
 

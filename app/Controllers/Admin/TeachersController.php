@@ -50,7 +50,8 @@ class TeachersController extends BaseController
                 } else {
                     $message = $this->addMessage('success', 'A mentés sikerült.');
                 }
-            } elseif (array_key_exists('save', $this->request->getPost()) && $this->request->getPost('save') == 'availability') {
+            } elseif (array_key_exists('save', $this->request->getPost()) && 
+                    ($this->request->getPost('save') == 'availability' || $this->request->getPost('save') == 'teacherAvailability')) {
                 $teacherAvailabilityModel = new \App\Models\TeacherAvailabilityModel();
                 $availability = $this->request->getPost('availability');
                 $teacher_id = $this->request->getPost('teacher_id');
@@ -84,10 +85,14 @@ class TeachersController extends BaseController
                         return view('admin/teachers/availability.php', array(
                             'data' => $availibility,
                             'teacher' => $this->model->find($teacher_id),
+                            'cancelSite' => '/'
                         ));
                     }
                 } else {
                     $message = $this->addMessage('success', 'A mentés sikerült.');
+                    if ($this->request->getPost('save') == 'teacherAvailability') {
+                        return view("/home.php");
+                    }
                 }
             } else {
                 $saved = $this->model->save($this->request->getPost());
@@ -111,7 +116,7 @@ class TeachersController extends BaseController
         ));
     }
 
-    public function update($id): string
+    public function update($id)
     {
         $users = new UserModel();
         if (strtolower($this->request->getMethod()) !== 'post') {
@@ -122,7 +127,7 @@ class TeachersController extends BaseController
         }
     }
 
-    public function add(): string
+    public function add()
     {
         if (strtolower($this->request->getMethod()) !== 'post') {
             $users = new UserModel();
@@ -138,7 +143,7 @@ class TeachersController extends BaseController
         }
     }
 
-    public function subjects($id): string
+    public function subjects($id)
     {
         $subjectModel = new SubjectModel();
         $teacherSubjectModel = new \App\Models\TeacherSubjectModel();
@@ -152,7 +157,7 @@ class TeachersController extends BaseController
         }
     }
 
-    public function availability($id): string
+    public function availability($id)
     {
         $teacherAvailabilityModel = new \App\Models\TeacherAvailabilityModel();
 
@@ -168,6 +173,33 @@ class TeachersController extends BaseController
             return view('admin/teachers/availability.php', array(
                 'data' => $availibility,
                 'teacher' => $this->model->find($id),
+                'cancelSite' => 'admin/teachers/show',
+            ));
+        }
+    }
+
+    public function teacherAvailability()
+    {
+        $id = auth()->user()->id;
+        $teacher = $this->model->getTeacher($id);
+
+        if (count($teacher) > 0) {
+            $teacherAvailabilityModel = new \App\Models\TeacherAvailabilityModel();
+
+            $tAvail = $teacherAvailabilityModel->getTeacherAvailability($teacher['id']);
+            $availibility = array();
+            if ($tAvail != null) {
+                foreach ($tAvail as $ta) {
+                    $availibility[$ta['day']][$ta['hour']] = 1;
+                }
+            }
+        }
+
+        if (strtolower($this->request->getMethod()) !== 'post') {
+            return view('admin/teachers/availability.php', array(
+                'data' => $availibility,
+                'teacher' => $teacher,
+                'cancelSite' => '/'
             ));
         }
     }

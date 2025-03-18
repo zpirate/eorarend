@@ -2,6 +2,9 @@
 
 <?= $this->section('content') ?>
 
+<?php if (count($teacher) == 0) : ?>
+    <h1>A felhasználó nincs még tanárhoz hozzárendelve</h1>
+<?php else : ?>
 <h1 class="text-center"><?= $teacher['name'] ?> rendelkezésre állása</h1>
 <div class="m-4">
     <?php
@@ -9,8 +12,8 @@
     if (isset($errors))
         setError($errors);
 
-    echo start_form('admin/teachers/show');
-    echo form_hidden('save', 'availability');
+    echo start_form( 'admin/teachers/show');
+    echo form_hidden('save', $cancelSite == '/' ? 'teacherAvailability' : 'availability');
     echo form_hidden('teacher_id', $teacher['id']);
     echo form_hidden('availability', '');
     ?>
@@ -45,10 +48,12 @@
     </div>
     <?php
     echo start_button_group();
-    echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button', 'onclick' => "window.location.href='" . site_url('admin/teachers/show') . "'"));
+    echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button', 
+        'onclick' => "window.location.href='" .  site_url($cancelSite) . "'"));
     echo button('btnSubmit', 'Mentés', 'button', array('class' => 'btn btn-primary frm-button', 'onclick' => "saveAvailability()"));
     echo end_button_group();
     echo end_form();
     ?>
 </div>
+<?php endif; ?>
 <?= $this->endSection() ?>

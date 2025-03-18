@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href=<?= base_url('css/bootstrap.min.css') ?> rel="stylesheet">
     <link href=<?= base_url('css/style.css'); ?> rel="stylesheet">
+    <link href=<?= base_url('css/fontello.css'); ?> rel="stylesheet">
     <title>e-Órarend</title>
 </head>
 
@@ -24,6 +25,11 @@
                         <li class="nav-item">
                             <a name="teachers" class="nav-link" href="<?= url_to('teachers') ?>">Tanárok</a>
                         </li>
+                        <?php if (auth()->user()->inGroup('teacher')) : ?>
+                        <li class="nav-item">
+                            <a name="teacherAvailability" class="nav-link" href="<?= url_to('teacherAvailability') ?>">Rendelkezére állás</a>
+                        </li>
+                        <?php endif; ?>
                         <?php
                         $hide = "d-none";
                         if (auth()->user()->inGroup('admin'))
@@ -70,8 +76,8 @@
     <?= $this->renderSection('content') ?>
 
     <script src=<?= base_url('js/jquery-3.7.1.min.js'); ?>></script>
-    <script src=<?= base_url('/js/common.js'); ?>></script>
     <script src=<?= base_url('js/bootstrap.bundle.min.js'); ?>></script>
+    <script src=<?= base_url('/js/common.js'); ?>></script>
     <script>
         setMenuActive('<?= basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']) ?>');
     </script>

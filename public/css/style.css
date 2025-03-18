@@ -1,3 +1,36 @@
+:root {
+    --c-primary: rgba(240, 233, 245, 0.9);
+    --c-primary-bg: rgba(100, 12, 78, 0.7);
+    --c-primary-shadow: rgba(73, 8, 57, 0.5);
+}
+
+body {
+    padding-bottom: 100px;
+}
+
+.stat {
+    background-color: var(--c-primary-bg);
+    color: var(--c-primary);
+    text-align: center;
+    margin: 0 .5em;
+    padding: 1em;
+    border-radius: 15px;
+    box-shadow: 3px 3px 2px 2px var(--c-primary-shadow);
+}
+
+.stat-value {
+    font-size: 150%;
+    margin-top: 1em;
+    text-shadow: 2px 2px rgba(255, 255, 255, .2);
+}
+
+.stat-title {
+    font-weight: bold;
+    color: white;
+}
+
+
+
 div#pagination li {
     border: gray solid 1px;
     padding: 0 6px;
@@ -75,4 +108,15 @@ td.available {
 
 td.unavailable {
     background-color: red;
+}
+
+footer {
+    background-color: black;
+    width: 100%;
+    padding: 1em 0;
+    text-align: center;
+    color: rgba(200, 200, 200, .9);
+    margin-top: 2em;
+    position: fixed;
+    bottom: 37px;
 }

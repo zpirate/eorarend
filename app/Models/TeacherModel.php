@@ -86,4 +86,13 @@ class TeacherModel extends Model
     {
         return $this->builder()->select("id as key, name as value")->orderBy('name')->get()->getResultArray();
     }
+
+    function getTeacher($userId) {
+        $teacher = $this->builder()->where("user_id", $userId)->get()->getResultArray();
+        if (count($teacher) > 0) {
+            return $teacher[0];
+        } else {
+            return array();
+        }
+    }
 }

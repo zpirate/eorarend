@@ -1,7 +1,6 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('content') ?>
-<script src="https://kit.fontawesome.com/6b773fe9e4.js" crossorigin="anonymous"></script>
 
 <h1 class="text-center">Tantárgyak karbantartása</h1>
 <table class="table table-bordered m-3">
@@ -18,16 +17,16 @@
             <tr>
                 <td><?= $data['name'] ?></td>
                 <td>
+                    <form action='<?= site_url("admin/subjects/show"); ?>' method='post' style='display: inline-block;'>
                     <a href='<?= site_url("admin/subjects/update/{$data['id']}"); ?>' title='Módosítás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
-                        <i class='far fa-edit'></i></a>
-                        <form action='<?= site_url("admin/subjects/show"); ?>' method='post' style='display: inline;'>
-                            <input type='hidden' name='method' value='delete'>
-                            <input type='hidden' name='id' value='<?= $data['id'] ?>'>
-                            <button type='submit' title='Törlés' data-toggle='tooltip' class='btn btn-sm btn-danger me-2'
-                                onclick="return confirm('Biztosan törli a tantárgyat (<?= $data['name'] ?>)?');">
-                                <i class='far fa-trash-alt'></i>
-                            </button>
-                        </form>
+                        <span class='icon icon-edit'></span></a>
+                        <input type='hidden' name='method' value='delete'>
+                        <input type='hidden' name='id' value='<?= $data['id'] ?>'>
+                        <button type='submit' title='Törlés' data-toggle='tooltip' class='btn btn-sm btn-danger me-2'
+                            onclick="return confirm('Biztosan törli a tantárgyat (<?= $data['name'] ?>)?')">
+                            <span class='icon icon-trash'></span>
+                        </button>
+                    </form>
             </tr>
         <?php endforeach; ?>
     </tbody>
