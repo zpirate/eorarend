@@ -55,10 +55,23 @@ function select_field($name, $label, $options, $selected, $args = [])
     foreach ($options as $option) {
         $code[$option['key']] = $option['value'];
     }
-    $html = getOpenDivLabel() . form_label($label, $name, array('class' => 'frm-label')) . "</div>";
+    $html = "";
+    if (!empty($label)) 
+        $html .= getOpenDivLabel() . form_label($label, $name, array('class' => 'frm-label')) . "</div>";
+    
     $html .= getOpenDiv() . form_dropdown($name, $code, $selected, $extra) . "</div>";
     $html .= show_error($name);
     return $html;
+}
+
+function filter_options($options, $filter): array {
+    $filtered = array();
+    foreach ($options as $option) {
+        if ($option['filter'] === $filter) {
+            array_push($filtered, array('key' => $option['key'], 'value' => $option['value']));
+        }
+    }
+    return $filtered;
 }
 
 function multiselect_field($name, $label, $options, $selected = [], $args = [])

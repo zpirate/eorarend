@@ -22,15 +22,17 @@
                 <td><?= $data['teacher_name'] ?></td>
                 <td>
                     <a href='<?= site_url("admin/classes/update/{$data['id']}"); ?>' title='Módosítás' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
-                    <span class='icon icon-edit'></span></a>
-                        <form action='<?= site_url("admin/classes/show"); ?>' method='post' style='display: inline;'>
-                            <input type='hidden' name='method' value='delete'>
-                            <input type='hidden' name='id' value='<?= $data['id'] ?>'>
-                            <button type='submit' title='Törlés' data-toggle='tooltip' class='btn btn-sm btn-danger me-2'
-                                onclick="return confirm('Biztosan törli az osztályt (<?= $data['name'] ?>)?');">
-                                <span class='icon icon-trash'></span>
-                            </button>
-                        </form>
+                        <span class='icon icon-edit'></span></a>
+                    <a href='<?= site_url("admin/classes/teachers/{$data['id']}"); ?>' title='Tanárok' data-toggle='tooltip' class='btn btn-sm btn-warning me-2'>
+                        <span class='icon icon-teacher'></span></a>
+                    <form action='<?= site_url("admin/classes/show"); ?>' method='post' style='display: inline;'>
+                        <input type='hidden' name='method' value='delete'>
+                        <input type='hidden' name='id' value='<?= $data['id'] ?>'>
+                        <button type='submit' title='Törlés' data-toggle='tooltip' class='btn btn-sm btn-danger me-2'
+                            onclick="return confirm('Biztosan törli az osztályt (<?= $data['name'] ?>)?');">
+                            <span class='icon icon-trash'></span>
+                        </button>
+                    </form>
             </tr>
         <?php endforeach; ?>
     </tbody>

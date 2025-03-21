@@ -12,7 +12,7 @@ class ClassModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['year_id','name', 'class_teacher_id'];
+    protected $allowedFields    = ['year_id', 'name', 'class_teacher_id'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -60,16 +60,26 @@ class ClassModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getDataFull() {
+    public function getDataFull()
+    {
         $this->builder()->select('classes.*, teachers.name as teacher_name, years.name as year_name')
-                ->join('teachers', 'teachers.id=classes.class_teacher_id')
-                ->join('years', 'years.id=classes.year_id')
-                ->orderBy('classes.name');
+            ->join('teachers', 'teachers.id=classes.class_teacher_id')
+            ->join('years', 'years.id=classes.year_id')
+            ->orderBy('classes.name');
         return $this;
     }
 
-    function getCodetable() {
+    function getCodetable()
+    {
         return $this->builder()->select("id as key, name as value")->orderBy('name')->get()->getResultArray();
     }
 
+    function getSubjectForClass($id)
+    {
+        return $this->builder()->select('classes.*, subjects.id as subject_id, subjects.name as subject_name')
+            ->join('lessons_per_week', 'lessons_per_week.year_id=classes.year_id')
+            ->join('subjects', 'subjects.id=lessons_per_week.subject_id')
+            ->where('classes.id', $id)
+            ->orderBy('subjects.name')->get()->getResultArray();
+    }
 }

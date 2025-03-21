@@ -47,6 +47,7 @@ $routes->group('admin', static function ($routes) {
         $routes->get('show', 'Admin\ClassesController::show');
         $routes->get('update/(:num)', 'Admin\ClassesController::update/$1');
         $routes->post('show', 'Admin\ClassesController::show');
+        $routes->get('teachers/(:num)', 'Admin\ClassesController::teachers/$1');
         $routes->get('add', 'Admin\ClassesController::add');
         });
 });

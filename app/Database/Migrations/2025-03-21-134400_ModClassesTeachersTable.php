@@ -2,13 +2,14 @@
 
 use CodeIgniter\Database\Migration;
 
-class CreateClassesTeachersTable extends Migration {
+class ModClassesTeachersTable extends Migration
+{
 
     public function up() {
         $this->forge->addField([
             'id' => [
                 'type' => 'int',
-                'autoincrement' => true
+                'auto_increment' => true
             ],
             'class_id' => [
                 'type' => 'int',
@@ -26,6 +27,7 @@ class CreateClassesTeachersTable extends Migration {
         $this->forge->addForeignKey('subject_id', 'subjects', 'id');
         $this->forge->addForeignKey('teacher_id', 'teachers', 'id');
 
+        $this->forge->dropTable('classes_teachers');
         $this->forge->createTable('classes_teachers');
     }
 

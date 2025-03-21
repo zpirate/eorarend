@@ -35,6 +35,23 @@ class ClassesController extends BaseController
                 } else {
                     $message = $this->addMessage('success', 'A törlés sikerült.');
                 }
+            } elseif (array_key_exists('save', $this->request->getPost()) && $this->request->getPost('save') == 'teachers') {
+                $subjectModel = new \App\Models\ClassTeacherModel();
+                $saved = $subjectModel->saveSubjects($this->request->getPost());
+                if (!$saved) {
+                    $teacherModel = new TeacherModel();
+                    $classesTeacherModel = new \App\Models\ClassTeacherModel();
+                    $classId = $this->request->getPost()['teacher_id'];
+            
+                    return view('admin/classes/teachers.php', array(
+                        'class' => $this->model->find($classId),
+                        'data' => $classesTeacherModel->getByClass($classId),
+                        'subjects' => $this->model->getSubjectForClass($classId),
+                        'teachers' => $teacherModel->getCodetableFilterSubject()
+                    ));
+                } else {
+                    $message = $this->addMessage('success', 'A mentés sikerült.');
+                }
             } else {
                 $saved = $this->model->save($this->request->getPost());
                 if (!$saved) {
@@ -62,18 +79,18 @@ class ClassesController extends BaseController
     {
         $years = new YearModel();
         $teachers = new TeacherModel();
-        if (strtolower($this->request->getMethod()) !== 'post') {
+        // if (strtolower($this->request->getMethod()) !== 'post') {
             return view('admin/classes/update.php', array(
                 'data' => $this->model->find($id),
                 'years' => $years->getCodeTable(),
                 'teachers' => $teachers->getCodeTable(),
             ));
-        }
+        // }
     }
 
     public function add(): string
     {
-        if (strtolower($this->request->getMethod()) !== 'post') {
+        // if (strtolower($this->request->getMethod()) !== 'post') {
             $years = new YearModel();
             $teachers = new TeacherModel();
 
@@ -87,6 +104,19 @@ class ClassesController extends BaseController
                 'years' => $years->getCodeTable(),
                 'teachers' => $teachers->getCodeTable(),
             ));
-        }
+        // }
+    }
+
+    public function teachers($id)
+    {
+        $teacherModel = new TeacherModel();
+        $classesTeacherModel = new \App\Models\ClassTeacherModel();
+
+        return view('admin/classes/teachers.php', array(
+            'class' => $this->model->find($id),
+            'data' => $classesTeacherModel->getByClass($id),
+            'subjects' => $this->model->getSubjectForClass($id),
+            'teachers' => $teacherModel->getCodetableFilterSubject()
+        ));
     }
 }

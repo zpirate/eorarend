@@ -82,6 +82,13 @@ class TeacherModel extends Model
         return $this;
     }
 
+    public function getCodetableFilterSubject()
+    {
+        return $this->builder()->select('teachers.id as key, teachers.name as value, teachers_subjects.subject_id as filter')
+            ->join('teachers_subjects', 'teachers_subjects.teacher_id=teachers.id')
+            ->orderBy('teachers.name')->get()->getResultArray();
+    }
+
     function getCodetable()
     {
         return $this->builder()->select("id as key, name as value")->orderBy('name')->get()->getResultArray();
