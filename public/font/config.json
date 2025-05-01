@@ -29,6 +29,12 @@
       "css": "calendar",
       "code": 59399,
       "src": "linecons"
+    },
+    {
+      "uid": "56a0672588820ab1a16363e5d07dd22e",
+      "css": "teacher",
+      "code": 59392,
+      "src": "linecons"
     }
   ]
 }

@@ -1,11 +1,16 @@
+<link href="/eorarend/public/css/style.css" rel="stylesheet">
 <?= $this->extend(config('Auth')->views['layout']) ?>
 
 <?= $this->section('title') ?><?= lang('Auth.register') ?> <?= $this->endSection() ?>
 
 <?= $this->section('main') ?>
 
-    <div class="container d-flex justify-content-center p-5">
-        <div class="card col-12 col-md-5 shadow-sm">
+<div class="auth-center-outer">
+    <div class="site-logo-container">
+        <img src="<?= base_url('css/IMG/FilcLogo.png') ?>" alt="Site Logo">
+    </div>
+    <div class="auth-center-container">
+        <div class="card col-12 col-md-5 shadow-sm auth-card">
             <div class="card-body">
                 <h5 class="card-title mb-5"><?= lang('Auth.register') ?></h5>
 
@@ -64,14 +69,15 @@
                     </div>
 
                     <div class="d-grid col-12 col-md-8 mx-auto m-3">
-                        <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.register') ?></button>
+                        <button type="submit" class="btn btn-primary btn-block auth-button"><?= lang('Auth.register') ?></button>
                     </div>
 
-                    <p class="text-center"><?= lang('Auth.haveAccount') ?> <a href="<?= url_to('login') ?>"><?= lang('Auth.login') ?></a></p>
+                    <p class="text-center"><?= lang('Auth.haveAccount') ?> <a href="<?= url_to('login') ?>" class="auth-link"><?= lang('Auth.login') ?></a></p>
 
                 </form>
             </div>
         </div>
     </div>
+</div>
 
 <?= $this->endSection() ?>
