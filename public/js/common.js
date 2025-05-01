@@ -46,3 +46,64 @@ function saveAvailability() {
     //alert(available + $('#formId').attr('action'));
     $('#formId').submit();
 }
+
+
+function colorLessonNumber(id) {
+    if ($("span#lesson_" + id).text() == $("span#subject_" + id).text()) {
+        $("#tr_" + id).removeClass("unfit");
+        $("#tr_" + id).addClass("fit");
+    } else {
+        $("#tr_" + id).removeClass("fit");
+        $("#tr_" + id).addClass("unfit");
+    }
+}
+
+function updateSubject(e, url, day, hour) {
+    //alert("Updating timetable for " + day + " " + hour + " " + subjectId);
+    var oldVal = $(e).attr('data-oldvalue');
+    var curVal = $(e).val();
+    // alert("oldVal: " + oldVal + ", curVal: " + curVal);
+    // alert($("span#subject_" + oldVal).text());
+    $("span#subject_" + oldVal).text(parseInt($("span#subject_" + oldVal).text()) - 1);
+    $("span#subject_" + curVal).text(parseInt($("span#subject_" + curVal).text()) + 1);
+        $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            class_id: $("select[name='class_id']").find(":selected").val(),
+            day: day + 1,
+            hour: hour + 1,
+            subject_id: curVal
+        },
+        success: function(response) {
+         },
+        error: function(xhr, status, message) {
+            // Handle error
+            alert("Hiba történt a mentés közben! (" + message + ")");
+        }
+    });
+    $(e).attr('data-oldvalue', curVal);
+    colorLessonNumber(curVal);
+    colorLessonNumber(oldVal);
+}
+
+function updateClassroom(url, day, hour, classroomId) {
+    //alert("Updating timetable for " + day + " " + hour + " " + subjectId);
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            class_id: $("select[name='class_id']").find(":selected").val(),
+            day: day + 1,
+            hour: hour + 1,
+            classroom_id: classroomId
+        },
+        success: function(response) {
+         },
+        error: function(xhr, status, message) {
+            // Handle error
+            alert("Hiba történt a mentés közben! (" + message + ")");
+        }
+    });
+
+}

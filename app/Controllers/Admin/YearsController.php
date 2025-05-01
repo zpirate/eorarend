@@ -66,7 +66,7 @@ class YearsController extends BaseController
         ));
     }
 
-    public function update($id): string
+    public function update($id)
     {
         if (strtolower($this->request->getMethod()) !== 'post') {
             return view('admin/years/update.php', array(
@@ -75,7 +75,7 @@ class YearsController extends BaseController
         }
     }
 
-    public function add(): string
+    public function add()
     {
         if (strtolower($this->request->getMethod()) !== 'post') {
             return view('admin/years/update.php', array(
@@ -87,7 +87,7 @@ class YearsController extends BaseController
         }
     }
 
-    public function subjects($id): string
+    public function subjects($id)
     {
         $lessonsPerWeekModel = new \App\Models\LessonsPerWeekModel();
 

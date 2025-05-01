@@ -56,7 +56,7 @@ class StudentsController extends BaseController
         ));
     }
 
-    public function update($id): string
+    public function update($id)
     {
         $classModel = new \App\Models\ClassModel();
 
@@ -68,7 +68,7 @@ class StudentsController extends BaseController
         }
     }
 
-    public function add(): string
+    public function add()
     {
         $classModel = new \App\Models\ClassModel();
 

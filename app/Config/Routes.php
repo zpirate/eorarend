@@ -20,7 +20,7 @@ $routes->group('admin', static function ($routes) {
         $routes->get('add', 'Admin\TeachersController::add');
         $routes->get('subjects/(:num)', 'Admin\TeachersController::subjects/$1');
         $routes->get('availability/(:num)', 'Admin\TeachersController::availability/$1');
-        });
+    });
 });
 
 $routes->group('admin', static function ($routes) {
@@ -29,7 +29,7 @@ $routes->group('admin', static function ($routes) {
         $routes->get('update/(:num)', 'Admin\ClassroomsController::update/$1');
         $routes->post('show', 'Admin\ClassroomsController::show');
         $routes->get('add', 'Admin\ClassroomsController::add');
-        });
+    });
 });
 
 $routes->group('admin', static function ($routes) {
@@ -39,7 +39,7 @@ $routes->group('admin', static function ($routes) {
         $routes->post('show', 'Admin\YearsController::show');
         $routes->get('subjects/(:num)', 'Admin\YearsController::subjects/$1');
         $routes->get('add', 'Admin\YearsController::add');
-        });
+    });
 });
 
 $routes->group('admin', static function ($routes) {
@@ -49,7 +49,7 @@ $routes->group('admin', static function ($routes) {
         $routes->post('show', 'Admin\ClassesController::show');
         $routes->get('teachers/(:num)', 'Admin\ClassesController::teachers/$1');
         $routes->get('add', 'Admin\ClassesController::add');
-        });
+    });
 });
 
 $routes->group('admin', static function ($routes) {
@@ -58,7 +58,7 @@ $routes->group('admin', static function ($routes) {
         $routes->get('update/(:num)', 'Admin\SubjectsController::update/$1');
         $routes->post('show', 'Admin\SubjectsController::show');
         $routes->get('add', 'Admin\SubjectsController::add');
-        });
+    });
 });
 
 $routes->group('admin', static function ($routes) {
@@ -67,7 +67,16 @@ $routes->group('admin', static function ($routes) {
         $routes->get('update/(:num)', 'Admin\StudentsController::update/$1');
         $routes->post('show', 'Admin\StudentsController::show');
         $routes->get('add', 'Admin\StudentsController::add');
-        });
+    });
+});
+
+$routes->group('admin', static function ($routes) {
+    $routes->group('timetable', static function ($routes) {
+        $routes->get('show/(:num)', 'Admin\TimetableController::show/$1');
+        $routes->get('show', 'Admin\TimetableController::show/0');
+        $routes->post('updatesubject', 'Admin\TimetableController::updateSubject');
+        $routes->post('updateclassroom', 'Admin\TimetableController::updateClassroom');
+    });
 });
 
 /* Technical */

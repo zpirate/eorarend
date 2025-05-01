@@ -44,6 +44,7 @@
                             <li><a class="dropdown-item" href="<?= url_to('admin/years/show') ?>">Évfolyamok</a></li>
                             <li><a class="dropdown-item" href="<?= url_to('admin/classes/show') ?>">Osztályok</a></li> 
                             <li><a class="dropdown-item" href="<?= url_to('admin/classrooms/show') ?>">Osztálytermek</a></li>
+                            <li><a class="dropdown-item" href="<?= url_to('admin/timetable/show')."/0" ?>">Órarend</a></li> 
                             <li><a class="dropdown-item" href="<?= url_to('admin/teachers/show') ?>">Tanárok</a></li>      
                             <li><a class="dropdown-item" href="<?= url_to('admin/subjects/show') ?>">Tantárgyak</a></li>
                             <li><a class="dropdown-item" href="<?= url_to('admin/students/show') ?>">Tanulók</a></li>                    

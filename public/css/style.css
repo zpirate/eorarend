@@ -88,6 +88,10 @@ body {
     box-shadow: 3px 3px 2px 2px var(--c-primary-shadow);
 }
 
+.stat:hover {
+    box-shadow: -3px -3px 2px 2px rgba(20, 20, 20, .3)
+}
+
 .stat-value {
     font-size: 150%;
     margin-top: 1em;
@@ -101,6 +105,18 @@ body {
 
 .table {
     width: 95%;
+}
+
+select.long {
+    width: 100%;
+}
+
+tr.fit {
+    background-color: chartreuse;
+}
+
+tr.unfit {
+    background-color: sienna;
 }
 
 div#pagination li {

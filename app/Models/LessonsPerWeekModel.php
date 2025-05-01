@@ -53,8 +53,7 @@ class LessonsPerWeekModel extends Model
     {
         $sql = "SELECT l.id, {$yearId} as year_id, s.id as subject_id, IFNULL(l.lesson_number, 0) as lesson_number, s.name as name
                 FROM subjects s
-                LEFT JOIN lessons_per_week l ON l.subject_id = s.id
-                WHERE l.year_id = ? OR l.year_id IS NULL
+                LEFT JOIN lessons_per_week l ON l.subject_id = s.id AND l.year_id = ?
                 ORDER BY s.name";
         return $this->db->query($sql, [$yearId])->getResultArray();
     }
@@ -84,4 +83,16 @@ class LessonsPerWeekModel extends Model
         return true;
     }
 
+    public function getSubjectsWithTeacher($class_id) {
+        $this->builder()
+            ->select("lessons_per_week.id, lessons_per_week.lesson_number, 0 as act_number, 
+            c.name as class_name, s.id as subject_id, s.name as subject_name, t.id as teacher_id, t.name as teacher_name")
+            ->join("classes c", "c.year_id=lessons_per_week.year_id")
+            ->join("subjects s", "s.id=lessons_per_week.subject_id")
+            ->join("classes_teachers ct", "ct.class_id=c.id AND ct.subject_id=lessons_per_week.subject_id", "LEFT")
+            ->join("teachers t", "t.id=ct.teacher_id", "LEFT")
+            ->where("c.id", $class_id)
+            ->orderBy("s.name");
+        return $this->get()->getResultArray();
+    }
 }

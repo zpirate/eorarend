@@ -55,5 +55,4 @@ class SubjectModel extends Model
     public function getCodeTable() {
         return $this->builder()->select('id as key, name as value')->orderBy('name')->get()->getResultArray();
     }
-
 }
