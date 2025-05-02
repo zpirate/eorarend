@@ -24,9 +24,6 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a name="home" class="nav-link active" href="<?= url_to('home') ?>">Főoldal</a>
-                    </li>
-                    <li class="nav-item">
                         <a name="timetable" class="nav-link" href="<?= url_to('timetable') ?>">Órarend</a>
                     </li>
                     <li class="nav-item">
@@ -44,6 +41,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="<?= url_to('admin/years/show') ?>">Évfolyamok</a></li>
+                        <li><a class="dropdown-item" href="<?= url_to('admin/timetable/show')."/0" ?>">Órarend</a></li> 
                         <li><a class="dropdown-item" href="<?= url_to('admin/classes/show') ?>">Osztályok</a></li> 
                         <li><a class="dropdown-item" href="<?= url_to('admin/classrooms/show') ?>">Osztálytermek</a></li>
                         <li><a class="dropdown-item" href="<?= url_to('admin/teachers/show') ?>">Tanárok</a></li>      

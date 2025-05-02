@@ -84,7 +84,9 @@ h6 {
     --text-light: #bfa3f7;
     --danger: #ff5c8d;
     --success: #4fd1c5;
-    --card-border: #a259ec;}
+    --card-border: #a259ec;
+    --logout: #a9274e;
+}
 
 body {
     padding-bottom: 100px;
@@ -570,7 +572,7 @@ body.login-bg, body.register-bg {
 
 /* Navbar logout (Kilépés) link style */
 .navbar-logout-link {
-    color: var(--danger) !important;
+    color: var(--logout) !important;
     font-weight: 600;
     margin-left: 1.2rem;
     padding: 0.25rem 0.9rem;
@@ -591,8 +593,8 @@ body.login-bg, body.register-bg {
 .navbar-logout-link:hover,
 .navbar-logout-link:focus {
     color: #fff !important;
-    background: var(--danger);
-    border: 1.5px solid var(--danger);
+    background: var(--logout);
+    border: 1.5px solid var(--logout);
     box-shadow: 0 2px 12px 0 rgba(255, 92, 141, 0.18);
     text-decoration: none;
     outline: none;
@@ -917,6 +919,7 @@ html, body {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
+    padding-bottom: 100px;
 }
 
 /* Add a glowing hover effect to home and admin cards */
@@ -1909,4 +1912,11 @@ html, body {
     .timetable-mobile-list {
         display: block;
     }
+}
+
+
+table.admin-table th,
+table.admin-table td,
+.admin-table.table-striped>tbody>tr:nth-of-type(odd)>* {
+    color: beige;
 }

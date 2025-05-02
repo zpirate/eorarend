@@ -27,10 +27,10 @@
     echo checkbox_fields($allSubjects);
     echo '</div></div>';
 
-    echo '<div class="btn-group d-flex flex-wrap w-100" role="group">';
-    echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button flex-fill', 'onclick' => "window.location.href='" . site_url('admin/teachers/show') . "'"));
-    echo button('submit', 'Mentés', 'submit', array('class' => 'btn btn-primary frm-button flex-fill'));
-    echo '</div>';
+    echo start_button_group(array('class' => 'w-100 flex-column flex-sm-row'));
+    echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button', 'onclick' => "window.location.href='" . site_url('admin/teachers/show') . "'"));
+    echo button('submit', 'Mentés', 'submit', array('class' => 'btn btn-primary frm-button'));
+    echo end_button_group();
     echo end_form();
     ?>
     </div>

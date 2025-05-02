@@ -1,3 +1,4 @@
+@ -0,0 +1,119 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('content') ?>
@@ -21,7 +22,7 @@ echo "</div>";
     <div class="row">
         <div class="col-3">
             <div class="mx-5 my-2">
-                <table class="table table-striped table-bordered border-primary">
+                <table class="table table-striped table-bordered border-primary admin-table">
                     <thead>
                         <tr>
                             <th scope="col">Tantárgy</th>
@@ -48,7 +49,7 @@ echo "</div>";
 
         <div class="col-9">
             <div class="mx-5 my-2">
-                <table class="table table-striped table-bordered border-primary">
+                <table class="table table-striped table-bordered border-primary admin-table">
                     <?= timetableHeader() ?>
                     <tbody>
                         <?php

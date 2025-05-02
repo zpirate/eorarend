@@ -24,13 +24,13 @@
                             <td><?= esc($data['subjects']) ?></td>
                             <td>
                                 <a href='<?= site_url("admin/teachers/update/{$data['id']}"); ?>' title='Módosítás' data-toggle='tooltip' class='btn years-action-btn years-action-btn-warning me-2'>
-                                    <i class='far fa-edit'></i>
+                                    <i class='icon-edit'></i>
                                 </a>
                                 <a href='<?= site_url("admin/teachers/subjects/{$data['id']}"); ?>' title='Tantárgyak' data-toggle='tooltip' class='btn years-action-btn years-action-btn-warning me-2'>
-                                    <i class='fas fa-book'></i>
+                                    <i class='icon-book'></i>
                                 </a>
                                 <a href='<?= site_url("admin/teachers/availability/{$data['id']}"); ?>' title='Rendelkezésre állás' data-toggle='tooltip' class='btn years-action-btn years-action-btn-warning me-2'>
-                                    <i class='far fa-calendar'></i>
+                                    <i class='icon-calendar'></i>
                                 </a>
                                 <?php if ($data['classcount'] == 0) : ?>
                                     <form action='<?= site_url("admin/teachers/show"); ?>' method='post' style='display: inline;'>
@@ -38,7 +38,7 @@
                                         <input type='hidden' name='id' value='<?= esc($data['id']) ?>'>
                                         <button type='submit' title='Törlés' data-toggle='tooltip' class='btn years-action-btn years-action-btn-danger me-2'
                                             onclick="return confirm('Biztosan törli a tanárt (<?= esc($data['name']) ?>)?');">
-                                            <i class='far fa-trash-alt'></i>
+                                            <i class='icon-trash'></i>
                                         </button>
                                     </form>
                                 <?php endif; ?>

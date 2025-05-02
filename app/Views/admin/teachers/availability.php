@@ -2,9 +2,9 @@
 
 <?= $this->section('content') ?>
 
-<?php if (count($teacher) == 0) : ?>
+<?php if (count($teacher) == 0) { ?>
     <h1>A felhasználó nincs még tanárhoz hozzárendelve</h1>
-<?php else : ?>
+<?php } else { ?>
 <h1 class="text-center"><?= $teacher['name'] ?> rendelkezésre állása</h1>
 <div class="m-4">
     <div class="container-fluid px-0">
@@ -52,10 +52,10 @@
         <div class="fs-6 text-light mt-2">A napra duplát kattintva az egész nap rendelkezésre állása módosítható</div>
     </div>
     <?php
-    echo '<div class="btn-group d-flex flex-wrap w-100" role="group">';
-    echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button flex-fill', 'onclick' => "window.location.href='" . site_url('admin/teachers/show') . "'"));
-    echo button('btnSubmit', 'Mentés', 'button', array('class' => 'btn btn-primary frm-button flex-fill', 'onclick' => "saveAvailability()"));
-    echo '</div>';
+    echo start_button_group(array('class' => 'w-100 flex-column flex-sm-row'));
+    echo button('cancel', 'Mégsem', 'cancel', array('class' => 'btn btn-primary frm-button', 'onclick' => "window.location.href='" . site_url('admin/teachers/show') . "'"));
+    echo button('btnSubmit', 'Mentés', 'button', array('class' => 'btn btn-primary frm-button', 'onclick' => "saveAvailability()"));
+    echo end_button_group();
     echo end_form();
     ?>
     </div>
@@ -111,4 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<?php } ?>
+
 <?= $this->endSection() ?>
