@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 12, 2025 at 03:18 PM
--- Server version: 8.0.40-0ubuntu0.22.04.1
+-- Generation Time: May 02, 2025 at 11:27 PM
+-- Server version: 8.0.41-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `eorarend`
 --
-CREATE DATABASE IF NOT EXISTS `eorarend` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci;
-USE `eorarend`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +27,6 @@ USE `eorarend`;
 -- Table structure for table `auth_groups_users`
 --
 
-DROP TABLE IF EXISTS `auth_groups_users`;
 CREATE TABLE `auth_groups_users` (
   `id` int UNSIGNED NOT NULL,
   `user_id` int UNSIGNED NOT NULL,
@@ -54,7 +51,6 @@ INSERT INTO `auth_groups_users` (`id`, `user_id`, `group`, `created_at`) VALUES
 -- Table structure for table `auth_identities`
 --
 
-DROP TABLE IF EXISTS `auth_identities`;
 CREATE TABLE `auth_identities` (
   `id` int UNSIGNED NOT NULL,
   `user_id` int UNSIGNED NOT NULL,
@@ -75,11 +71,11 @@ CREATE TABLE `auth_identities` (
 --
 
 INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secret2`, `expires`, `extra`, `force_reset`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'email_password', 'Kaló Zoltán', 'admin@gmail.com', '$2y$12$qdJUgwaZQF2F7gqoXEEe2ONcjqZ4bDd1YeXD6OretPz/kzhxkohYq', NULL, NULL, 0, '2025-03-12 14:15:53', '2025-01-28 13:17:57', '2025-03-12 14:15:53'),
-(7, 9, 'email_password', NULL, 'stuednt1@gmail.com', '$2y$12$oRfhtVjh/EjN.BeTsjWdjuGnI/2PXQwSneo5onhHN0dKMvHbqkrna', NULL, NULL, 0, '2025-03-12 14:16:25', '2025-02-12 17:52:12', '2025-03-12 14:16:25'),
+(1, 1, 'email_password', 'Kaló Zoltán', 'admin@gmail.com', '$2y$12$qdJUgwaZQF2F7gqoXEEe2ONcjqZ4bDd1YeXD6OretPz/kzhxkohYq', NULL, NULL, 0, '2025-05-02 20:13:07', '2025-01-28 13:17:57', '2025-05-02 20:13:07'),
+(7, 9, 'email_password', NULL, 'stuednt1@gmail.com', '$2y$12$oRfhtVjh/EjN.BeTsjWdjuGnI/2PXQwSneo5onhHN0dKMvHbqkrna', NULL, NULL, 0, '2025-05-02 20:12:56', '2025-02-12 17:52:12', '2025-05-02 20:12:56'),
 (8, 1, 'magic-link', NULL, 'f64d4d3f3b5cd84524a3', NULL, '2025-02-17 13:29:19', NULL, 0, NULL, '2025-02-17 12:29:19', '2025-02-17 12:29:19'),
 (9, 10, 'email_password', NULL, 'student2@gmail.com', '$2y$12$.Z8nHZROfWVh.AByDIOY7.t2EUw/V39gM1N2YQUeWKXoJL2z./6SK', NULL, NULL, 0, '2025-03-12 14:16:35', '2025-02-21 09:44:33', '2025-03-12 14:16:35'),
-(11, 12, 'email_password', NULL, 'teacher1@gmail.com', '$2y$12$QW.jdMIzSUTv01sDLtBEI.p/Cd7iTN.rIMH4tuX3YZ4SDy5EzLTfO', NULL, NULL, 0, '2025-03-12 14:16:48', '2025-02-21 15:30:59', '2025-03-12 14:16:48');
+(11, 12, 'email_password', NULL, 'teacher1@gmail.com', '$2y$12$QW.jdMIzSUTv01sDLtBEI.p/Cd7iTN.rIMH4tuX3YZ4SDy5EzLTfO', NULL, NULL, 0, '2025-04-01 10:38:08', '2025-02-21 15:30:59', '2025-04-01 10:38:08');
 
 -- --------------------------------------------------------
 
@@ -87,7 +83,6 @@ INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secre
 -- Table structure for table `auth_logins`
 --
 
-DROP TABLE IF EXISTS `auth_logins`;
 CREATE TABLE `auth_logins` (
   `id` int UNSIGNED NOT NULL,
   `ip_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -198,7 +193,32 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identif
 (92, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-12 14:15:53', 1),
 (93, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'student1', 9, '2025-03-12 14:16:25', 1),
 (94, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'student2', 10, '2025-03-12 14:16:35', 1),
-(95, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'teacher1', 12, '2025-03-12 14:16:48', 1);
+(95, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'teacher1', 12, '2025-03-12 14:16:48', 1),
+(96, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-12 14:28:48', 1),
+(97, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'student1', 9, '2025-03-12 15:43:57', 1),
+(98, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-12 16:15:32', 1),
+(99, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-13 07:51:53', 1),
+(100, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-13 15:50:46', 1),
+(101, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-14 12:20:53', 1),
+(102, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'student1', 9, '2025-03-17 16:49:54', 1),
+(103, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-17 16:50:21', 1),
+(104, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-18 07:06:05', 1),
+(105, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-21 09:21:01', 1),
+(106, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-21 15:40:12', 1),
+(107, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-21 20:24:11', 1),
+(108, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-03-31 11:51:57', 1),
+(109, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-04-01 07:08:19', 1),
+(110, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'teacher1', 12, '2025-04-01 10:38:08', 1),
+(111, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-04-01 10:38:57', 1),
+(112, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-04-09 13:11:32', 1),
+(113, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'root', NULL, '2025-04-30 17:58:06', 0),
+(114, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-04-30 17:58:10', 1),
+(115, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-05-01 20:00:32', 1),
+(116, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'student1', 9, '2025-05-01 20:05:08', 1),
+(117, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-05-01 20:28:40', 1),
+(118, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-05-02 20:09:54', 1),
+(119, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'student1', 9, '2025-05-02 20:12:56', 1),
+(120, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'username', 'admin', 1, '2025-05-02 20:13:07', 1);
 
 -- --------------------------------------------------------
 
@@ -206,7 +226,6 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identif
 -- Table structure for table `auth_permissions_users`
 --
 
-DROP TABLE IF EXISTS `auth_permissions_users`;
 CREATE TABLE `auth_permissions_users` (
   `id` int UNSIGNED NOT NULL,
   `user_id` int UNSIGNED NOT NULL,
@@ -220,7 +239,6 @@ CREATE TABLE `auth_permissions_users` (
 -- Table structure for table `auth_remember_tokens`
 --
 
-DROP TABLE IF EXISTS `auth_remember_tokens`;
 CREATE TABLE `auth_remember_tokens` (
   `id` int UNSIGNED NOT NULL,
   `selector` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -237,7 +255,6 @@ CREATE TABLE `auth_remember_tokens` (
 -- Table structure for table `auth_token_logins`
 --
 
-DROP TABLE IF EXISTS `auth_token_logins`;
 CREATE TABLE `auth_token_logins` (
   `id` int UNSIGNED NOT NULL,
   `ip_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -255,7 +272,6 @@ CREATE TABLE `auth_token_logins` (
 -- Table structure for table `classes`
 --
 
-DROP TABLE IF EXISTS `classes`;
 CREATE TABLE `classes` (
   `id` int NOT NULL COMMENT 'Azonosító',
   `year_id` int NOT NULL COMMENT 'Évfolyam FK',
@@ -268,8 +284,44 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `year_id`, `name`, `class_teacher_id`) VALUES
-(1, 2, '9/A', 1),
-(2, 1, '9/B', 1);
+(1, 1, '13/A', 1),
+(2, 1, '13/B', 5),
+(3, 2, '14/A', 10),
+(4, 2, '14/B', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classes_teachers`
+--
+
+CREATE TABLE `classes_teachers` (
+  `id` int NOT NULL,
+  `class_id` int NOT NULL,
+  `subject_id` int NOT NULL,
+  `teacher_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `classes_teachers`
+--
+
+INSERT INTO `classes_teachers` (`id`, `class_id`, `subject_id`, `teacher_id`) VALUES
+(6, 1, 1, 1),
+(32, 1, 2, 1),
+(3, 1, 3, 5),
+(21, 1, 4, 16),
+(5, 1, 8, 9),
+(31, 1, 9, 10),
+(35, 1, 10, 12),
+(43, 2, 1, 12),
+(39, 2, 2, 16),
+(41, 2, 3, 5),
+(40, 2, 4, 2),
+(37, 2, 8, 19),
+(38, 2, 9, 10),
+(18, 2, 10, 11),
+(42, 2, 10, 12);
 
 -- --------------------------------------------------------
 
@@ -277,7 +329,6 @@ INSERT INTO `classes` (`id`, `year_id`, `name`, `class_teacher_id`) VALUES
 -- Table structure for table `classrooms`
 --
 
-DROP TABLE IF EXISTS `classrooms`;
 CREATE TABLE `classrooms` (
   `id` int NOT NULL,
   `name` int NOT NULL
@@ -290,7 +341,11 @@ CREATE TABLE `classrooms` (
 INSERT INTO `classrooms` (`id`, `name`) VALUES
 (1, 102),
 (2, 101),
-(6, 300);
+(6, 104),
+(7, 103),
+(8, 201),
+(9, 202),
+(10, 203);
 
 -- --------------------------------------------------------
 
@@ -298,7 +353,6 @@ INSERT INTO `classrooms` (`id`, `name`) VALUES
 -- Table structure for table `codes`
 --
 
-DROP TABLE IF EXISTS `codes`;
 CREATE TABLE `codes` (
   `id` int NOT NULL,
   `userid` int NOT NULL,
@@ -311,7 +365,6 @@ CREATE TABLE `codes` (
 -- Table structure for table `lessons_per_week`
 --
 
-DROP TABLE IF EXISTS `lessons_per_week`;
 CREATE TABLE `lessons_per_week` (
   `id` int NOT NULL,
   `year_id` int NOT NULL,
@@ -324,7 +377,13 @@ CREATE TABLE `lessons_per_week` (
 --
 
 INSERT INTO `lessons_per_week` (`id`, `year_id`, `subject_id`, `lesson_number`) VALUES
-(1, 1, 3, 1);
+(1, 1, 3, 8),
+(2, 1, 4, 6),
+(3, 1, 10, 4),
+(4, 1, 8, 4),
+(5, 1, 1, 4),
+(6, 1, 2, 6),
+(7, 1, 9, 4);
 
 -- --------------------------------------------------------
 
@@ -332,7 +391,6 @@ INSERT INTO `lessons_per_week` (`id`, `year_id`, `subject_id`, `lesson_number`) 
 -- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `id` bigint UNSIGNED NOT NULL,
   `version` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -350,7 +408,9 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
 (1, '2020-12-28-223112', 'CodeIgniter\\Shield\\Database\\Migrations\\CreateAuthTables', 'default', 'CodeIgniter\\Shield', 1738066834, 1),
 (2, '2021-07-04-041948', 'CodeIgniter\\Settings\\Database\\Migrations\\CreateSettingsTable', 'default', 'CodeIgniter\\Settings', 1738066834, 1),
-(3, '2021-11-14-143905', 'CodeIgniter\\Settings\\Database\\Migrations\\AddContextColumn', 'default', 'CodeIgniter\\Settings', 1738066834, 1);
+(3, '2021-11-14-143905', 'CodeIgniter\\Settings\\Database\\Migrations\\AddContextColumn', 'default', 'CodeIgniter\\Settings', 1738066834, 1),
+(4, '2025-03-12-153000', '\\CreateClassesTeachersTable', 'default', 'App', 1741791544, 2),
+(5, '2025-03-21-134400', '\\ModClassesTeachersTable', 'default', 'App', 1742571589, 3);
 
 -- --------------------------------------------------------
 
@@ -358,7 +418,6 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 -- Table structure for table `settings`
 --
 
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `id` int NOT NULL,
   `class` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -376,7 +435,6 @@ CREATE TABLE `settings` (
 -- Table structure for table `students`
 --
 
-DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `id` int NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_hungarian_ci NOT NULL,
@@ -389,8 +447,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `educational_id`, `class_id`) VALUES
-(1, 'Tanuló Kettő', '111', 1),
-(2, 'Tanuló Egy', '222', 2);
+(1, 'Tanuló Kettő', '70000000001', 1),
+(2, 'Tanuló Egy', '70000000002', 2);
 
 -- --------------------------------------------------------
 
@@ -398,7 +456,6 @@ INSERT INTO `students` (`id`, `name`, `educational_id`, `class_id`) VALUES
 -- Table structure for table `subjects`
 --
 
-DROP TABLE IF EXISTS `subjects`;
 CREATE TABLE `subjects` (
   `id` int NOT NULL,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL
@@ -409,10 +466,13 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `name`) VALUES
-(1, 'Matematika'),
-(2, 'Testnevelés'),
-(3, 'Fizika'),
-(4, 'Informatika');
+(1, 'Webdesign'),
+(2, 'Asztali alkalmazások fejlesztése'),
+(3, 'Frontend programozás'),
+(4, 'Backend programozás'),
+(8, 'Adatbázis kezelés'),
+(9, 'API fejlesztés'),
+(10, 'Szakmai angol');
 
 -- --------------------------------------------------------
 
@@ -420,7 +480,6 @@ INSERT INTO `subjects` (`id`, `name`) VALUES
 -- Table structure for table `teachers`
 --
 
-DROP TABLE IF EXISTS `teachers`;
 CREATE TABLE `teachers` (
   `id` int NOT NULL,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
@@ -451,7 +510,6 @@ INSERT INTO `teachers` (`id`, `name`, `user_id`) VALUES
 -- Table structure for table `teachers_subjects`
 --
 
-DROP TABLE IF EXISTS `teachers_subjects`;
 CREATE TABLE `teachers_subjects` (
   `id` int NOT NULL,
   `teacher_id` int NOT NULL,
@@ -467,7 +525,25 @@ INSERT INTO `teachers_subjects` (`id`, `teacher_id`, `subject_id`) VALUES
 (2, 1, 2),
 (4, 5, 3),
 (6, 20, 2),
-(7, 22, 2);
+(7, 22, 2),
+(9, 6, 3),
+(10, 2, 3),
+(11, 2, 4),
+(12, 2, 1),
+(13, 10, 1),
+(14, 10, 9),
+(15, 19, 8),
+(16, 19, 2),
+(17, 19, 9),
+(19, 11, 3),
+(20, 11, 8),
+(21, 16, 4),
+(22, 16, 1),
+(23, 16, 2),
+(24, 9, 8),
+(25, 5, 2),
+(26, 12, 10),
+(27, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -475,7 +551,6 @@ INSERT INTO `teachers_subjects` (`id`, `teacher_id`, `subject_id`) VALUES
 -- Table structure for table `teacher_availability`
 --
 
-DROP TABLE IF EXISTS `teacher_availability`;
 CREATE TABLE `teacher_availability` (
   `id` int NOT NULL,
   `teacher_id` int NOT NULL,
@@ -488,7 +563,25 @@ CREATE TABLE `teacher_availability` (
 --
 
 INSERT INTO `teacher_availability` (`id`, `teacher_id`, `day`, `hour`) VALUES
-(0, 5, 1, 1),
+(0, 1, 2, 2),
+(0, 1, 2, 5),
+(0, 1, 3, 1),
+(0, 1, 3, 3),
+(0, 1, 3, 4),
+(0, 1, 3, 6),
+(0, 1, 3, 8),
+(0, 1, 3, 9),
+(0, 1, 4, 7),
+(0, 1, 5, 4),
+(0, 1, 5, 5),
+(0, 22, 1, 1),
+(0, 22, 1, 2),
+(0, 5, 1, 4),
+(0, 5, 1, 5),
+(0, 5, 1, 6),
+(0, 5, 1, 7),
+(0, 5, 1, 8),
+(0, 5, 1, 9),
 (0, 5, 2, 1),
 (0, 5, 2, 2),
 (0, 5, 2, 3),
@@ -508,20 +601,7 @@ INSERT INTO `teacher_availability` (`id`, `teacher_id`, `day`, `hour`) VALUES
 (0, 5, 4, 7),
 (0, 5, 4, 8),
 (0, 5, 4, 9),
-(0, 5, 5, 9),
-(0, 1, 2, 2),
-(0, 1, 2, 5),
-(0, 1, 3, 1),
-(0, 1, 3, 3),
-(0, 1, 3, 4),
-(0, 1, 3, 6),
-(0, 1, 3, 8),
-(0, 1, 3, 9),
-(0, 1, 4, 7),
-(0, 1, 5, 4),
-(0, 1, 5, 5),
-(0, 22, 1, 1),
-(0, 22, 1, 2);
+(0, 5, 5, 9);
 
 -- --------------------------------------------------------
 
@@ -529,7 +609,6 @@ INSERT INTO `teacher_availability` (`id`, `teacher_id`, `day`, `hour`) VALUES
 -- Table structure for table `timetables`
 --
 
-DROP TABLE IF EXISTS `timetables`;
 CREATE TABLE `timetables` (
   `id` int NOT NULL,
   `class_id` int NOT NULL,
@@ -545,51 +624,21 @@ CREATE TABLE `timetables` (
 --
 
 INSERT INTO `timetables` (`id`, `class_id`, `day`, `lesson_of_day`, `subject_id`, `teacher_id`, `classroom_id`) VALUES
-(1, 1, 1, 1, 1, 22, 1),
-(2, 1, 1, 2, 1, 2, 2),
-(3, 1, 1, 3, 2, 5, 6),
-(4, 1, 1, 4, NULL, NULL, NULL),
-(5, 1, 1, 5, NULL, NULL, NULL),
-(6, 1, 1, 6, NULL, NULL, NULL),
-(7, 1, 1, 7, NULL, NULL, NULL),
-(8, 1, 1, 8, NULL, NULL, NULL),
-(9, 1, 1, 9, NULL, NULL, NULL),
 (10, 2, 2, 1, 2, 22, 6),
 (11, 1, 2, 2, 1, 9, 1),
-(12, 1, 2, 3, NULL, NULL, NULL),
-(13, 1, 2, 4, NULL, NULL, NULL),
-(14, 1, 2, 5, NULL, NULL, NULL),
-(15, 1, 2, 6, NULL, NULL, NULL),
-(16, 1, 2, 7, NULL, NULL, NULL),
-(17, 1, 2, 8, NULL, NULL, NULL),
-(18, 1, 2, 9, NULL, NULL, NULL),
-(19, 1, 3, 1, NULL, NULL, NULL),
-(20, 1, 3, 2, 1, 22, 2),
+(19, 1, 3, 1, 1, NULL, 2),
+(20, 1, 3, 2, 10, 22, 2),
 (21, 1, 3, 3, 1, 6, 2),
-(22, 1, 3, 4, NULL, NULL, NULL),
 (23, 1, 3, 5, 2, 1, 1),
-(24, 1, 3, 6, NULL, NULL, NULL),
-(25, 1, 3, 7, NULL, NULL, NULL),
-(26, 1, 3, 8, NULL, 22, NULL),
-(27, 1, 3, 9, NULL, NULL, NULL),
-(28, 1, 4, 1, NULL, NULL, NULL),
-(29, 1, 4, 2, NULL, NULL, NULL),
-(30, 1, 4, 3, NULL, 22, NULL),
-(31, 1, 4, 4, NULL, NULL, NULL),
-(32, 1, 4, 5, NULL, NULL, NULL),
-(33, 1, 4, 6, NULL, NULL, NULL),
-(34, 1, 4, 7, NULL, NULL, NULL),
-(35, 1, 4, 8, NULL, NULL, NULL),
-(36, 1, 4, 9, NULL, 22, NULL),
-(37, 1, 5, 1, NULL, NULL, NULL),
-(38, 1, 5, 2, NULL, NULL, NULL),
-(39, 1, 5, 3, NULL, NULL, NULL),
-(40, 1, 5, 4, NULL, NULL, NULL),
-(41, 1, 5, 5, NULL, NULL, NULL),
-(42, 1, 5, 6, NULL, NULL, NULL),
-(43, 1, 5, 7, NULL, NULL, NULL),
-(44, 1, 5, 8, NULL, NULL, NULL),
-(45, 1, 5, 9, NULL, NULL, NULL);
+(50, 1, 1, 5, 3, NULL, NULL),
+(52, 1, 2, 1, 3, NULL, 6),
+(55, 1, 1, 2, 2, NULL, 2),
+(60, 1, 1, 1, 2, NULL, NULL),
+(61, 1, 1, 3, 2, NULL, NULL),
+(62, 1, 1, 4, 3, NULL, NULL),
+(63, 1, 3, 4, 1, NULL, NULL),
+(64, 1, 3, 6, 1, NULL, NULL),
+(65, 1, 2, 3, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -597,7 +646,6 @@ INSERT INTO `timetables` (`id`, `class_id`, `day`, `lesson_of_day`, `subject_id`
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int UNSIGNED NOT NULL,
   `username` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -617,10 +665,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `full_name`, `educational_id`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'admin', 'Admin User', NULL, NULL, NULL, 1, '2025-03-12 14:16:12', '2025-01-28 13:17:56', '2025-01-28 13:17:57', NULL),
-(9, 'student1', 'Tanuló Egy', '222', NULL, NULL, 1, '2025-03-12 14:16:25', '2025-02-12 17:52:12', '2025-02-12 17:52:12', NULL),
-(10, 'student2', 'Tanuló Kettő', '111', NULL, NULL, 1, '2025-03-12 14:16:35', '2025-02-21 09:44:33', '2025-02-21 09:44:33', NULL),
-(12, 'teacher1', 'Tanár Egy', '', NULL, NULL, 1, '2025-03-12 14:16:54', '2025-02-21 15:30:59', '2025-02-21 15:30:59', NULL);
+(1, 'admin', 'Admin User', NULL, NULL, NULL, 1, '2025-05-02 21:25:35', '2025-01-28 13:17:56', '2025-01-28 13:17:57', NULL),
+(9, 'student1', 'Tanuló Egy', '70000000001', NULL, NULL, 1, '2025-05-02 20:12:56', '2025-02-12 17:52:12', '2025-02-12 17:52:12', NULL),
+(10, 'student2', 'Tanuló Kettő', '70000000002', NULL, NULL, 1, '2025-03-12 14:16:35', '2025-02-21 09:44:33', '2025-02-21 09:44:33', NULL),
+(12, 'teacher1', 'Tanár Egy', '', NULL, NULL, 1, '2025-04-01 10:38:44', '2025-02-21 15:30:59', '2025-02-21 15:30:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -628,7 +676,6 @@ INSERT INTO `users` (`id`, `username`, `full_name`, `educational_id`, `status`, 
 -- Table structure for table `years`
 --
 
-DROP TABLE IF EXISTS `years`;
 CREATE TABLE `years` (
   `id` int NOT NULL,
   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL
@@ -639,22 +686,8 @@ CREATE TABLE `years` (
 --
 
 INSERT INTO `years` (`id`, `name`) VALUES
-(1, 'OKJ1'),
-(2, 'OKJ2');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `years_subjects`
---
-
-DROP TABLE IF EXISTS `years_subjects`;
-CREATE TABLE `years_subjects` (
-  `id` int NOT NULL,
-  `year_id` int NOT NULL,
-  `subject_id` int NOT NULL,
-  `lessons_per_week` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+(1, 'Programozás 1. év'),
+(2, 'Programozás 2. év');
 
 --
 -- Indexes for dumped tables
@@ -713,6 +746,15 @@ ALTER TABLE `classes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `class_year_fk` (`year_id`),
   ADD KEY `class_classteacher_fk` (`class_teacher_id`);
+
+--
+-- Indexes for table `classes_teachers`
+--
+ALTER TABLE `classes_teachers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `class_id_subject_id_teacher_id` (`class_id`,`subject_id`,`teacher_id`),
+  ADD KEY `classes_teachers_subject_id_foreign` (`subject_id`),
+  ADD KEY `classes_teachers_teacher_id_foreign` (`teacher_id`);
 
 --
 -- Indexes for table `classrooms`
@@ -798,14 +840,6 @@ ALTER TABLE `years`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `years_subjects`
---
-ALTER TABLE `years_subjects`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `years_sub_year_fk` (`year_id`),
-  ADD KEY `years_sub_subject_fk` (`subject_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -825,7 +859,7 @@ ALTER TABLE `auth_identities`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions_users`
@@ -849,13 +883,19 @@ ALTER TABLE `auth_token_logins`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'Azonosító', AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'Azonosító', AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `classes_teachers`
+--
+ALTER TABLE `classes_teachers`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `classrooms`
 --
 ALTER TABLE `classrooms`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `codes`
@@ -867,13 +907,13 @@ ALTER TABLE `codes`
 -- AUTO_INCREMENT for table `lessons_per_week`
 --
 ALTER TABLE `lessons_per_week`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -891,7 +931,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `teachers`
@@ -903,13 +943,13 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `teachers_subjects`
 --
 ALTER TABLE `teachers_subjects`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `timetables`
 --
 ALTER TABLE `timetables`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -921,13 +961,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `years`
 --
 ALTER TABLE `years`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `years_subjects`
---
-ALTER TABLE `years_subjects`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -965,6 +999,14 @@ ALTER TABLE `classes`
   ADD CONSTRAINT `class_year_fk` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
+-- Constraints for table `classes_teachers`
+--
+ALTER TABLE `classes_teachers`
+  ADD CONSTRAINT `classes_teachers_class_id_foreign` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`),
+  ADD CONSTRAINT `classes_teachers_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`),
+  ADD CONSTRAINT `classes_teachers_teacher_id_foreign` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`id`);
+
+--
 -- Constraints for table `teacher_availability`
 --
 ALTER TABLE `teacher_availability`
@@ -978,13 +1020,6 @@ ALTER TABLE `timetables`
   ADD CONSTRAINT `timetable_classroom_id_fk` FOREIGN KEY (`classroom_id`) REFERENCES `classrooms` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `timetable_subject_id_fk` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `timetable_teacher_id_fk` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Constraints for table `years_subjects`
---
-ALTER TABLE `years_subjects`
-  ADD CONSTRAINT `years_sub_subject_fk` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `years_sub_year_fk` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
